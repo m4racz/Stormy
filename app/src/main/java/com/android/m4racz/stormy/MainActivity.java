@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
             DownloadForecast task = new DownloadForecast();
             findWeatherResult = task.execute(urlStrg);
 
-            mWeatherForecast.setText("aa");
+            mWeatherForecast.setText("Set Test for gitHub");
+            mWeatherForecast.setVisibility(View.VISIBLE);
 
 
         } catch (UnsupportedEncodingException e) {
