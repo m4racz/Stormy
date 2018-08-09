@@ -1,6 +1,6 @@
 package com.android.m4racz.stormy;
 
-import android.os.AsyncTask;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity{
     public ImageView mWeatherIcon;
     public TextView mWeatherForecast;
     public Button mSearchWeather;
+    public static Context context;
 
 
     //on create method that is run when application starts
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
         mSearchWeather = findViewById(R.id.xButtonFindWeather);
         mWeatherForecast = findViewById(R.id.xForecastDescription);
         mWeatherIcon = findViewById(R.id.xWeatherIcon);
+        context = getApplicationContext();
 
         //Create on click listener for button Get Forecast
         mSearchWeather.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
             String urlStrg = "https://api.openweathermap.org/data/2.5/weather?q=" + encodedCity + "&appid=89fd3664a5ad45e46488b6af57b2a5cd";
             Log.i("MYLOG","urlStrg: " + urlStrg);
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            DownloadForecast task = new DownloadForecast();
+            DownloadForecast task = new DownloadForecast(mWeatherForecast, mWeatherIcon, context );
 
             //get forecast
             task.execute(urlStrg);
