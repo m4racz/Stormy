@@ -137,7 +137,7 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
             int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
             Log.i("MYLOG", "imgID: " + imgID);
 
-            weatherIconImage.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),imgID));
+            weatherIconImage.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
 
         }
         catch (JSONException e) {
