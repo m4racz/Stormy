@@ -23,17 +23,19 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
     private TextView weatherTemperatureCurrent;
     private TextView weatherTemperatureMax;
     private TextView weatherTemperatureMin;
+    private TextView weatherWindSpeed;
     private ImageView weatherIconImage;
 
 
     private Context context;
 
-    DownloadForecast(TextView mWeatherForecast, ImageView mWeatherIcon, TextView mWeatherTemperatureCurrent, TextView mWeatherTemperatureMin, TextView mWeatherTemperatureMax, Context context) {
+    DownloadForecast(TextView mWeatherForecast, ImageView mWeatherIcon, TextView mWeatherTemperatureCurrent, TextView mWeatherTemperatureMin, TextView mWeatherTemperatureMax, TextView mWeatherWindspeed, Context context) {
         this.weatherForacast = mWeatherForecast;
         this.weatherIconImage =  mWeatherIcon;
         this.weatherTemperatureCurrent = mWeatherTemperatureCurrent;
         this.weatherTemperatureMax = mWeatherTemperatureMax;
         this.weatherTemperatureMin = mWeatherTemperatureMin;
+        this.weatherWindSpeed = mWeatherWindspeed;
         this.context = context;
     }
 
@@ -208,11 +210,15 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
             }
 
             if (key.equals("weatherTemperatureMax")){
-                weatherTemperatureMax.setText(parsedWeather.get(key) + context.getString(R.string.celsiusDegrees));
+                weatherTemperatureMax.setText(context.getString(R.string.max) + parsedWeather.get(key) + context.getString(R.string.celsiusDegrees));
             }
 
             if (key.equals("weatherTemperatureMin")){
-                weatherTemperatureMax.setText(parsedWeather.get(key)+ context.getString(R.string.celsiusDegrees));
+                weatherTemperatureMin.setText(context.getString(R.string.min) + parsedWeather.get(key)+ context.getString(R.string.celsiusDegrees));
+            }
+
+            if (key.equals("weatherWindSpeed")){
+                weatherWindSpeed.setText(context.getString(R.string.wind) + parsedWeather.get(key)+ context.getString(R.string.windSpeedUnit));
             }
 
             //SET IMAGE

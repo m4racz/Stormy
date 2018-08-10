@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity{
     public TextView mWeatherTemperatureCurrent;
     public TextView mWeatherTemperatureMin;
     public TextView mWeatherTemperatureMax;
+    public TextView mWeatherWindspeed;
 
     public Context context;
 
@@ -44,18 +46,37 @@ public class MainActivity extends AppCompatActivity{
         mWeatherTemperatureMax = findViewById(R.id.xTemperatureMax);
         mWeatherTemperatureMin = findViewById(R.id.xTemperatureMin);
         mWeatherTemperatureCurrent = findViewById(R.id.xTemperatureCurrent);
+        mWeatherWindspeed = findViewById(R.id.xWindSpeed);
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
+
+        //Create onFocusChange listener to hide keyboard
+        mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if(!hasFocus){
+                    hideKeyBoard();
+                }
+            }
+        });
 
         //Create on click listener for button Get Forecast
         mSearchWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyBoard();
                 findWeather(view);
             }
         });
 
+    }
+
+    private void hideKeyBoard() {
+        InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(mInputCity.getWindowToken(), 0);
+        }
     }
 
     //Search for the weather
@@ -69,7 +90,7 @@ public class MainActivity extends AppCompatActivity{
             String urlStrg = "https://api.openweathermap.org/data/2.5/weather?q=" + encodedCity + "&units=metric" + "&appid=89fd3664a5ad45e46488b6af57b2a5cd";
             Log.i("MYLOG","urlStrg: " + urlStrg);
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            DownloadForecast task = new DownloadForecast(mWeatherForecast, mWeatherIcon, mWeatherTemperatureCurrent, mWeatherTemperatureMin, mWeatherTemperatureMax,  context );
+            DownloadForecast task = new DownloadForecast(mWeatherForecast, mWeatherIcon, mWeatherTemperatureCurrent, mWeatherTemperatureMin, mWeatherTemperatureMax, mWeatherWindspeed ,  context );
 
             //get forecast
             task.execute(urlStrg);

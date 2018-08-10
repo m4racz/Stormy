@@ -3,4 +3,8 @@
     <string name="get_forecast">Get Forecast</string>
     <string name="enter_city_name">Enter City Name</string>
     <string name="celsiusDegrees">°C</string>
+    <string name="max">Max: </string>
+    <string name="min">Min: </string>
+    <string name="wind">Wind: </string>
+    <string name="windSpeedUnit">m/s</string>
 </resources>
