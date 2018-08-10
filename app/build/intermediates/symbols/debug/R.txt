@@ -808,7 +808,10 @@ int id wrap_content 0x7f070091
 int id xButtonFindWeather 0x7f070092
 int id xCityInput 0x7f070093
 int id xForecastDescription 0x7f070094
-int id xWeatherIcon 0x7f070095
+int id xTemperatureCurrent 0x7f070095
+int id xTemperatureMax 0x7f070096
+int id xTemperatureMin 0x7f070097
+int id xWeatherIcon 0x7f070098
 int integer abc_config_activityDefaultDur 0x7f080000
 int integer abc_config_activityShortDur 0x7f080001
 int integer cancel_button_image_alpha 0x7f080002
@@ -895,10 +898,11 @@ int string abc_shareactionprovider_share_with 0x7f0b0024
 int string abc_shareactionprovider_share_with_application 0x7f0b0025
 int string abc_toolbar_collapse_description 0x7f0b0026
 int string app_name 0x7f0b0027
-int string enter_city_name 0x7f0b0028
-int string get_forecast 0x7f0b0029
-int string search_menu_title 0x7f0b002a
-int string status_bar_notification_info_overflow 0x7f0b002b
+int string celsiusDegrees 0x7f0b0028
+int string enter_city_name 0x7f0b0029
+int string get_forecast 0x7f0b002a
+int string search_menu_title 0x7f0b002b
+int string status_bar_notification_info_overflow 0x7f0b002c
 int style AlertDialog_AppCompat 0x7f0c0000
 int style AlertDialog_AppCompat_Light 0x7f0c0001
 int style Animation_AppCompat_Dialog 0x7f0c0002

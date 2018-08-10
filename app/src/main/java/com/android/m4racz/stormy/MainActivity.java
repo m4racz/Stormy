@@ -15,11 +15,17 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity{
+
     public EditText mInputCity;
     public ImageView mWeatherIcon;
-    public TextView mWeatherForecast;
     public Button mSearchWeather;
-    public static Context context;
+
+    public TextView mWeatherForecast;
+    public TextView mWeatherTemperatureCurrent;
+    public TextView mWeatherTemperatureMin;
+    public TextView mWeatherTemperatureMax;
+
+    public Context context;
 
 
     //on create method that is run when application starts
@@ -28,11 +34,18 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //init variables
+        //init input variables
         mInputCity = findViewById(R.id.xCityInput);
         mSearchWeather = findViewById(R.id.xButtonFindWeather);
+
+        //init result variables
         mWeatherForecast = findViewById(R.id.xForecastDescription);
         mWeatherIcon = findViewById(R.id.xWeatherIcon);
+        mWeatherTemperatureMax = findViewById(R.id.xTemperatureMax);
+        mWeatherTemperatureMin = findViewById(R.id.xTemperatureMin);
+        mWeatherTemperatureCurrent = findViewById(R.id.xTemperatureCurrent);
+
+        //get current context that will be passed to downloadTask
         context = getApplicationContext();
 
         //Create on click listener for button Get Forecast
@@ -53,19 +66,17 @@ public class MainActivity extends AppCompatActivity{
         //encode city to URL and Call Async OpenWeather API
         try {
             String encodedCity = URLEncoder.encode(mInputCity.getText().toString(), "UTF-8");
-            String urlStrg = "https://api.openweathermap.org/data/2.5/weather?q=" + encodedCity + "&appid=89fd3664a5ad45e46488b6af57b2a5cd";
+            String urlStrg = "https://api.openweathermap.org/data/2.5/weather?q=" + encodedCity + "&units=metric" + "&appid=89fd3664a5ad45e46488b6af57b2a5cd";
             Log.i("MYLOG","urlStrg: " + urlStrg);
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            DownloadForecast task = new DownloadForecast(mWeatherForecast, mWeatherIcon, context );
+            DownloadForecast task = new DownloadForecast(mWeatherForecast, mWeatherIcon, mWeatherTemperatureCurrent, mWeatherTemperatureMin, mWeatherTemperatureMax,  context );
 
             //get forecast
             task.execute(urlStrg);
 
 
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             Toast.makeText(this, "Error during the Search" + e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

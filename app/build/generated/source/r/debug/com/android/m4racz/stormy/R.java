@@ -3139,7 +3139,10 @@ public final class R {
     public static final int xButtonFindWeather=0x7f070092;
     public static final int xCityInput=0x7f070093;
     public static final int xForecastDescription=0x7f070094;
-    public static final int xWeatherIcon=0x7f070095;
+    public static final int xTemperatureCurrent=0x7f070095;
+    public static final int xTemperatureMax=0x7f070096;
+    public static final int xTemperatureMin=0x7f070097;
+    public static final int xWeatherIcon=0x7f070098;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;
@@ -3234,10 +3237,11 @@ public final class R {
     public static final int abc_shareactionprovider_share_with_application=0x7f0b0025;
     public static final int abc_toolbar_collapse_description=0x7f0b0026;
     public static final int app_name=0x7f0b0027;
-    public static final int enter_city_name=0x7f0b0028;
-    public static final int get_forecast=0x7f0b0029;
-    public static final int search_menu_title=0x7f0b002a;
-    public static final int status_bar_notification_info_overflow=0x7f0b002b;
+    public static final int celsiusDegrees=0x7f0b0028;
+    public static final int enter_city_name=0x7f0b0029;
+    public static final int get_forecast=0x7f0b002a;
+    public static final int search_menu_title=0x7f0b002b;
+    public static final int status_bar_notification_info_overflow=0x7f0b002c;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f0c0000;

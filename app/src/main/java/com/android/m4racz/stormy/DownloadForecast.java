@@ -1,8 +1,5 @@
 package com.android.m4racz.stormy;
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
@@ -23,13 +20,99 @@ import java.util.Set;
 
 public class DownloadForecast extends AsyncTask<String, Void, String> {
     private TextView weatherForacast;
+    private TextView weatherTemperatureCurrent;
+    private TextView weatherTemperatureMax;
+    private TextView weatherTemperatureMin;
     private ImageView weatherIconImage;
+
+
     private Context context;
 
-    public DownloadForecast(TextView mWeatherForecast, ImageView mWeatherIcon, Context context) {
+    DownloadForecast(TextView mWeatherForecast, ImageView mWeatherIcon, TextView mWeatherTemperatureCurrent, TextView mWeatherTemperatureMin, TextView mWeatherTemperatureMax, Context context) {
         this.weatherForacast = mWeatherForecast;
         this.weatherIconImage =  mWeatherIcon;
+        this.weatherTemperatureCurrent = mWeatherTemperatureCurrent;
+        this.weatherTemperatureMax = mWeatherTemperatureMax;
+        this.weatherTemperatureMin = mWeatherTemperatureMin;
         this.context = context;
+    }
+
+    private Hashtable<String,String> parseJSONObject(String jsonString){
+
+        String weatherInfo;
+        String weatherMain;
+        String weatherWind;
+        String weatherSys;
+
+        String weatherDescription = "";
+        String weatherIcon = "";
+        String weatherTemperatureCurrent;
+        String weatherTemperatureMin;
+        String weatherTemperatureMax;
+        String weatherHumidity;
+        String weatherWindSpeed;
+        String weatherSunRiseUnix;
+        String weatherSunSetUnix;
+
+        JSONObject jsonObject = null;
+        Hashtable<String,String> parsedWeather = new Hashtable<>();
+
+        Log.i("parseJSONObject", "parseJSONObject starts");
+
+        try {
+            jsonObject = new JSONObject(jsonString);
+            weatherInfo = jsonObject.getString("weather");
+            weatherMain = jsonObject.getString("main");
+            weatherWind = jsonObject.getString("wind");
+            weatherSys = jsonObject.getString("sys");
+
+            weatherTemperatureCurrent = new JSONObject(weatherMain).getString("temp");
+            weatherTemperatureMax = new JSONObject(weatherMain).getString("temp_max");
+            weatherTemperatureMin = new JSONObject(weatherMain).getString("temp_min");
+            weatherHumidity = new JSONObject(weatherMain).getString("humidity");
+            weatherWindSpeed = new JSONObject(weatherWind).getString("speed");
+            weatherSunRiseUnix = new JSONObject(weatherSys).getString("sunrise");
+            weatherSunSetUnix = new JSONObject(weatherSys).getString("sunset");
+
+            Log.i("MYLOG", "weatherInfo" + weatherInfo);
+            Log.i("MYLOG", "weatherMain" + weatherMain);
+
+            JSONArray jsonArray = new JSONArray(weatherInfo);
+            for (int i = 0; i < jsonArray.length(); i++){
+
+                JSONObject jsonPart = jsonArray.getJSONObject(i);
+                weatherDescription = jsonPart.getString("description");
+                weatherIcon = jsonPart.getString("icon");
+
+            }
+
+            Log.i("MYLOG", "weatherDescription" + weatherDescription);
+            Log.i("MYLOG", "weatherIcon" + weatherIcon);
+            Log.i("MYLOG", "weatherTemperatureCurrent" + weatherTemperatureCurrent);
+            Log.i("MYLOG", "weatherSunRiseUnix" + weatherSunRiseUnix);
+            Log.i("MYLOG", "weatherSunSetUnix" + weatherSunSetUnix);
+            Log.i("MYLOG", "weatherHumidity " + weatherHumidity);
+            Log.i("MYLOG", "weatherWindSpeed " + weatherWindSpeed );
+
+            //Add Results to HASH TABLE
+            parsedWeather.put("weatherDescription",weatherDescription);
+            parsedWeather.put("weatherIcon",weatherIcon);
+            parsedWeather.put("weatherTemperatureCurrent", weatherTemperatureCurrent);
+            parsedWeather.put("weatherTemperatureMax", weatherTemperatureMax);
+            parsedWeather.put("weatherTemperatureMin", weatherTemperatureMin);
+            parsedWeather.put("weatherHumidity", weatherHumidity);
+            parsedWeather.put("weatherWindSpeed", weatherWindSpeed);
+            parsedWeather.put("weatherSunRiseUnix", weatherSunRiseUnix);
+            parsedWeather.put("weatherSunSetUnix", weatherSunSetUnix);
+
+            return parsedWeather;
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return  null;
     }
 
     private Hashtable<String, String> createWeatherHashTable(){
@@ -50,6 +133,7 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
         weatherIcons.put("na", "na");
         return weatherIcons;
     }
+
     @Override
     protected void onPreExecute() {
 
@@ -57,7 +141,9 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
         // has been called! use dialog.findViewById().
 
 }
+
     @Override
+
     protected String doInBackground(String... urls) {
         //Variable declaration
         String forecastResult = "";
@@ -94,54 +180,60 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
         }
         return null;
     }
+
     @Override
     protected void onPostExecute(String result){
         super.onPostExecute(result);
 
-        try {
-            String weatherInfo ="";
-            String weatherDescription = "";
-            String weatherIcon = "";
-            String weatherIconToSet = "na";
-            JSONObject jsonObject = new JSONObject(result);
-            weatherInfo = jsonObject.getString("weather");
+        Hashtable<String, String> parsedWeather = parseJSONObject(result);
 
-            Log.i("MYLOG", weatherInfo);
-
-            JSONArray jsonArray = new JSONArray(weatherInfo);
-            for (int i = 0; i < jsonArray.length(); i++){
-
-                JSONObject jsonPart = jsonArray.getJSONObject(i);
-                weatherDescription = jsonPart.getString("description");
-                weatherIcon = jsonPart.getString("icon");
-
-            }
-
-            Log.i("MYLOG", "weatherDescription" + weatherDescription);
-            Log.i("MYLOG", "weatherIcon" + weatherIcon);
-
-            //set forecast text View
-            weatherForacast.setText(weatherDescription);
-
-            //set forecast icon according to the code returned
-            Hashtable weatherIcons = createWeatherHashTable();
-            Set keys = weatherIcons.keySet();
-            for (Object key : keys){
-                Log.i("weatherIcons", "Value of " + key + " is: " + weatherIcons.get(key));
-                if(weatherIcon.equals(key)){
-                    weatherIconToSet = (String) weatherIcons.get(key);
-                }
-            }
-            Log.i("MYLOG", "weatherIconToSet: " + weatherIconToSet);
-            String PACKAGE_NAME = context.getPackageName();
-            int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
-            Log.i("MYLOG", "imgID: " + imgID);
-
-            weatherIconImage.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
-
+        if (parsedWeather != null) {
+            Log.i("MYLOG", "parsedWeather" + parsedWeather.toString());
         }
-        catch (JSONException e) {
-            e.printStackTrace();
+
+
+        Set keys = parsedWeather.keySet();
+        for (Object key : keys){
+
+            Log.i("parsedWeather", "Value of " + key + " is: " + parsedWeather.get(key));
+
+
+            //SET WEATHER TEMPERATURES
+            if (key.equals("weatherDescription")){
+                weatherForacast.setText(parsedWeather.get(key));
+            }
+
+            if (key.equals("weatherTemperatureCurrent")){
+                weatherTemperatureCurrent.setText(parsedWeather.get(key) + context.getString(R.string.celsiusDegrees));
+            }
+
+            if (key.equals("weatherTemperatureMax")){
+                weatherTemperatureMax.setText(parsedWeather.get(key) + context.getString(R.string.celsiusDegrees));
+            }
+
+            if (key.equals("weatherTemperatureMin")){
+                weatherTemperatureMax.setText(parsedWeather.get(key)+ context.getString(R.string.celsiusDegrees));
+            }
+
+            //SET IMAGE
+            if (key.equals("weatherIcon")){
+                String weatherIconToSet = "na";
+                //set forecast icon according to the code returned
+                Hashtable weatherIcons = createWeatherHashTable();
+                Set keys2 = weatherIcons.keySet();
+                for (Object key2 : keys2){
+                    Log.i("weatherIcons", "Value of key2" + key2 + " is: " + weatherIcons.get(key2));
+                    if(parsedWeather.get(key).equals(key2)){
+                        weatherIconToSet = (String) weatherIcons.get(key2);
+                    }
+                }
+                Log.i("MYLOG", "weatherIconToSet: " + weatherIconToSet);
+                String PACKAGE_NAME = context.getPackageName();
+                int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
+                Log.i("MYLOG", "imgID: " + imgID);
+
+                weatherIconImage.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
+            }
         }
     }
 }

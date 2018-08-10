@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="86dp"
+        android:layout_marginBottom="107dp"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -51,5 +51,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/xTemperatureCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xForecastDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-86dp"
+        android:textSize="21sp" />
+
+    <TextView
+        android:id="@+id/xTemperatureMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xForecastDescription"
+        android:layout_marginTop="-86dp"
+        android:textSize="21sp" />
+
+    <TextView
+        android:id="@+id/xTemperatureMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xForecastDescription"
+        android:layout_marginEnd="75dp"
+        android:layout_marginTop="-86dp"
+        android:textSize="21sp"
+        android:layout_marginRight="75dp" />
 
 </RelativeLayout>
