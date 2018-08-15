@@ -1,24 +1,32 @@
 package com.android.m4racz.stormy;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity{
-    private static final String TAG = DownloadForecast.class.getSimpleName();
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     public EditText mInputCity;
     public ImageView mWeatherIcon;
     public ImageView mSearchWeather;
@@ -29,7 +37,24 @@ public class MainActivity extends AppCompatActivity{
     public TextView mWeatherTemperatureMax;
     public TextView mWeatherWindSpeed;
 
+    public LocationManager locationManager;
+    public LocationListener locationListener;
+
     public Context context;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,12 +69,33 @@ public class MainActivity extends AppCompatActivity{
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //INIT LOCATION MANAGER
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
 
+            @Override
+            public void onLocationChanged(Location location) {
+                Log.i(TAG, "onLocationChanged: location" + location.toString());
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
         //SET TOOLBAR MENU
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
         setSupportActionBar(toolbar);
-
-        //SET OPTIONS MENU
 
         //init input variables
         mInputCity =  findViewById(R.id.xInputSearch);
@@ -65,7 +111,6 @@ public class MainActivity extends AppCompatActivity{
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
-
         //Create onFocusChange listener to hide keyboard
         mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -85,7 +130,16 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // ask for permission
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            // we have permission!
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        }
+
     }
+
 
 
     /**
