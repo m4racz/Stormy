@@ -42,19 +42,21 @@ public class MainActivity extends AppCompatActivity{
 
     public Context context;
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
+        Log.i(TAG, "onCreate: Ask 4 Permission 3");
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+            Log.i(TAG, "onCreate: Ask 4 Permission 4");
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                Log.i(TAG, "onCreate: Ask 4 Permission 5");
+                Log.i(TAG, "onCreate: Location");
 
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
         }
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,11 +132,15 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        //
+        Log.i(TAG, "onCreate: Package Manager: " + PackageManager.PERMISSION_GRANTED);
+        Log.i(TAG, "onCreate: AccessFineLocation: " + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION));
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // ask for permission
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            Log.i(TAG, "onCreate: Ask 4 Permission 1");
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
+            Log.i(TAG, "onCreate: Ask 4 Permission 2");
         } else {
-            // we have permission!
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
 
