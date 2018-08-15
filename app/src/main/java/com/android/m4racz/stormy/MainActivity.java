@@ -1,9 +1,11 @@
 package com.android.m4racz.stormy;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -11,34 +13,47 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity{
-
+    private static final String TAG = DownloadForecast.class.getSimpleName();
     public EditText mInputCity;
     public ImageView mWeatherIcon;
-    public Button mSearchWeather;
+    public ImageView mSearchWeather;
 
     public TextView mWeatherForecast;
     public TextView mWeatherTemperatureCurrent;
     public TextView mWeatherTemperatureMin;
     public TextView mWeatherTemperatureMax;
-    public TextView mWeatherWindspeed;
+    public TextView mWeatherWindSpeed;
 
     public Context context;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
     //on create method that is run when application starts
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //SET TOOLBAR MENU
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
+        setSupportActionBar(toolbar);
+
+        //SET OPTIONS MENU
+
         //init input variables
-        mInputCity = findViewById(R.id.xCityInput);
-        mSearchWeather = findViewById(R.id.xButtonFindWeather);
+        mInputCity =  findViewById(R.id.xInputSearch);
+        mSearchWeather = findViewById(R.id.xSearchImage);
 
         //init result variables
         mWeatherForecast = findViewById(R.id.xForecastDescription);
@@ -46,7 +61,7 @@ public class MainActivity extends AppCompatActivity{
         mWeatherTemperatureMax = findViewById(R.id.xTemperatureMax);
         mWeatherTemperatureMin = findViewById(R.id.xTemperatureMin);
         mWeatherTemperatureCurrent = findViewById(R.id.xTemperatureCurrent);
-        mWeatherWindspeed = findViewById(R.id.xWindSpeed);
+        mWeatherWindSpeed = findViewById(R.id.xWindSpeed);
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
@@ -72,6 +87,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+
+    /**
+     * Hide Keyboard when invoked
+     */
     private void hideKeyBoard() {
         InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
@@ -79,20 +98,24 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    //Search for the weather
+
+    /**
+     Search for weather in OpenWeather API* @param view
+     */
     public void findWeather(View view)  {
 
-        Log.i("MYLOG","City to Search: " + mInputCity.getText().toString());
+        Log.i(TAG, "City to Search: " + mInputCity.getText().toString());
 
         //encode city to URL and Call Async OpenWeather API
         try {
+
             String encodedCity = URLEncoder.encode(mInputCity.getText().toString(), "UTF-8");
             String urlStrg = "https://api.openweathermap.org/data/2.5/weather?q=" + encodedCity + "&units=metric" + "&appid=89fd3664a5ad45e46488b6af57b2a5cd";
-            Log.i("MYLOG","urlStrg: " + urlStrg);
+            Log.i(TAG,"urlStrg: " + urlStrg);
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            DownloadForecast task = new DownloadForecast(mWeatherForecast, mWeatherIcon, mWeatherTemperatureCurrent, mWeatherTemperatureMin, mWeatherTemperatureMax, mWeatherWindspeed ,  context );
+            DownloadForecast task = new DownloadForecast(context, this);
 
-            //get forecast
+            //get forecast via AsyncTask
             task.execute(urlStrg);
 
 

@@ -1,7 +1,7 @@
 #Internal package file, do not edit.
-#Fri Aug 10 14:59:37 CEST 2018
+#Wed Aug 15 10:32:23 CEST 2018
 0.baseType=DIRECTORY
-0.base=C\:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\17
+0.base=C\:\\Users\\m4rac\\AndroidStudioProjects\\Stormy\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\55
 0.path=classes.dex
 0.set=DEX
 count=1

@@ -1,4 +1,4 @@
-#Fri Aug 10 13:11:35 CEST 2018
-base.0=C\:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\11
+#Wed Aug 15 09:27:54 CEST 2018
+base.0=C\:\\Users\\m4rac\\AndroidStudioProjects\\Stormy\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\47
 path.0=classes.dex
 renamed.0=classes.dex

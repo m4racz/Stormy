@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:elevation="4dp"
+    android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/weather_scattered_clouds"
+        />
+
+    <EditText
+        android:id="@+id/xInputSearch"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:hint="@string/enter_city_name"
+        android:textAlignment="center"
+
+        />
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+
+        android:id="@+id/xSearchImage"
+        android:src="@drawable/weather_search"
+        />
+</android.support.v7.widget.Toolbar>

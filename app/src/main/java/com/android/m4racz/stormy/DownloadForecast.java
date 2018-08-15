@@ -1,4 +1,5 @@
 package com.android.m4racz.stormy;
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,8 +18,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.function.ToDoubleBiFunction;
 
 public class DownloadForecast extends AsyncTask<String, Void, String> {
+
+    private static final String TAG = DownloadForecast.class.getSimpleName();
+
     private TextView weatherForacast;
     private TextView weatherTemperatureCurrent;
     private TextView weatherTemperatureMax;
@@ -26,21 +31,16 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
     private TextView weatherWindSpeed;
     private ImageView weatherIconImage;
 
-
+    private Activity mainActivity;
     private Context context;
 
-    DownloadForecast(TextView mWeatherForecast, ImageView mWeatherIcon, TextView mWeatherTemperatureCurrent, TextView mWeatherTemperatureMin, TextView mWeatherTemperatureMax, TextView mWeatherWindspeed, Context context) {
-        this.weatherForacast = mWeatherForecast;
-        this.weatherIconImage =  mWeatherIcon;
-        this.weatherTemperatureCurrent = mWeatherTemperatureCurrent;
-        this.weatherTemperatureMax = mWeatherTemperatureMax;
-        this.weatherTemperatureMin = mWeatherTemperatureMin;
-        this.weatherWindSpeed = mWeatherWindspeed;
+    DownloadForecast(Context context, MainActivity mainActivity) {
         this.context = context;
+        this.mainActivity = mainActivity;
     }
 
     private Hashtable<String,String> parseJSONObject(String jsonString){
-
+        // TODO: 15.08.2018 Use CLASS OpenWeather to Store data instead of stupid hashTable 
         String weatherInfo;
         String weatherMain;
         String weatherWind;
@@ -59,8 +59,6 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
         JSONObject jsonObject = null;
         Hashtable<String,String> parsedWeather = new Hashtable<>();
 
-        Log.i("parseJSONObject", "parseJSONObject starts");
-
         try {
             jsonObject = new JSONObject(jsonString);
             weatherInfo = jsonObject.getString("weather");
@@ -75,9 +73,7 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
             weatherWindSpeed = new JSONObject(weatherWind).getString("speed");
             weatherSunRiseUnix = new JSONObject(weatherSys).getString("sunrise");
             weatherSunSetUnix = new JSONObject(weatherSys).getString("sunset");
-
-            Log.i("MYLOG", "weatherInfo" + weatherInfo);
-            Log.i("MYLOG", "weatherMain" + weatherMain);
+            Log.i(TAG, "weatherMain" + weatherMain);
 
             JSONArray jsonArray = new JSONArray(weatherInfo);
             for (int i = 0; i < jsonArray.length(); i++){
@@ -88,13 +84,13 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
 
             }
 
-            Log.i("MYLOG", "weatherDescription" + weatherDescription);
-            Log.i("MYLOG", "weatherIcon" + weatherIcon);
-            Log.i("MYLOG", "weatherTemperatureCurrent" + weatherTemperatureCurrent);
-            Log.i("MYLOG", "weatherSunRiseUnix" + weatherSunRiseUnix);
-            Log.i("MYLOG", "weatherSunSetUnix" + weatherSunSetUnix);
-            Log.i("MYLOG", "weatherHumidity " + weatherHumidity);
-            Log.i("MYLOG", "weatherWindSpeed " + weatherWindSpeed );
+            Log.i(TAG, "weatherDescription" + weatherDescription);
+            Log.i(TAG, "weatherIcon" + weatherIcon);
+            Log.i(TAG, "weatherTemperatureCurrent" + weatherTemperatureCurrent);
+            Log.i(TAG, "weatherSunRiseUnix" + weatherSunRiseUnix);
+            Log.i(TAG, "weatherSunSetUnix" + weatherSunSetUnix);
+            Log.i(TAG, "weatherHumidity " + weatherHumidity);
+            Log.i(TAG, "weatherWindSpeed " + weatherWindSpeed );
 
             //Add Results to HASH TABLE
             parsedWeather.put("weatherDescription",weatherDescription);
@@ -119,20 +115,20 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
 
     private Hashtable<String, String> createWeatherHashTable(){
         Hashtable<String, String> weatherIcons = new Hashtable<>();
-        weatherIcons.put("01d", "sunny");
-        weatherIcons.put("01n", "sunny_night");
-        weatherIcons.put("02d", "few_clouds");
-        weatherIcons.put("02n", "few_clouds_night");
-        weatherIcons.put("03d", "scattered_clouds");
-        weatherIcons.put("03n", "scattered_clouds_night");
-        weatherIcons.put("04d", "broken_clouds");
-        weatherIcons.put("04n", "broken_clouds_night");
-        weatherIcons.put("09d", "drizzle");
-        weatherIcons.put("10d", "rain");
-        weatherIcons.put("11d", "thunderstorm");
-        weatherIcons.put("13d", "snow");
-        weatherIcons.put("50d", "atmosphere");
-        weatherIcons.put("na", "na");
+        weatherIcons.put("01d", "weather_sunny");
+        weatherIcons.put("01n", "weather_sunny_night");
+        weatherIcons.put("02d", "weather_few_clouds");
+        weatherIcons.put("02n", "weather_few_clouds_night");
+        weatherIcons.put("03d", "weather_scattered_clouds");
+        weatherIcons.put("03n", "weather_scattered_clouds_night");
+        weatherIcons.put("04d", "weather_broken_clouds");
+        weatherIcons.put("04n", "weather_broken_clouds_night");
+        weatherIcons.put("09d", "weather_drizzle");
+        weatherIcons.put("10d", "weather_rain");
+        weatherIcons.put("11d", "weather_thunderstorm");
+        weatherIcons.put("13d", "weather_snow");
+        weatherIcons.put("50d", "weather_atmosphere");
+        weatherIcons.put("weather_na", "weather_na");
         return weatherIcons;
     }
 
@@ -153,6 +149,7 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
         HttpURLConnection myConnection;
         //try to get the weather information from openweather API
         try {
+            // TODO: 15.08.2018 change URI builder to function and use append
             url = new URL(urls[0]); //get URL from Varargs in input (like an array)
             myConnection = (HttpURLConnection) url.openConnection(); //opens the connection to passed URL
 
@@ -170,7 +167,7 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
             }
 
             //return final result
-            Log.i("MYLOG", "forecastResult" + forecastResult);
+            Log.i(TAG, "forecastResult" + forecastResult);
             return forecastResult;
         }
         catch (MalformedURLException e) {
@@ -187,10 +184,18 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result){
         super.onPostExecute(result);
 
+        //init UI objects
+        weatherForacast = mainActivity.findViewById(R.id.xForecastDescription);
+        weatherTemperatureCurrent = mainActivity.findViewById(R.id.xTemperatureCurrent);
+        weatherTemperatureMax = mainActivity.findViewById(R.id.xTemperatureMax);
+        weatherTemperatureMin = mainActivity.findViewById(R.id.xTemperatureMin);
+        weatherWindSpeed = mainActivity.findViewById(R.id.xWindSpeed);
+        weatherIconImage = mainActivity.findViewById(R.id.xWeatherIcon);
+
         Hashtable<String, String> parsedWeather = parseJSONObject(result);
 
         if (parsedWeather != null) {
-            Log.i("MYLOG", "parsedWeather" + parsedWeather.toString());
+            Log.i(TAG, "parsedWeather" + parsedWeather.toString());
         }
 
 
@@ -223,7 +228,7 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
 
             //SET IMAGE
             if (key.equals("weatherIcon")){
-                String weatherIconToSet = "na";
+                String weatherIconToSet = "weather_na";
                 //set forecast icon according to the code returned
                 Hashtable weatherIcons = createWeatherHashTable();
                 Set keys2 = weatherIcons.keySet();
@@ -233,10 +238,10 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
                         weatherIconToSet = (String) weatherIcons.get(key2);
                     }
                 }
-                Log.i("MYLOG", "weatherIconToSet: " + weatherIconToSet);
+                Log.i(TAG, "weatherIconToSet: " + weatherIconToSet);
                 String PACKAGE_NAME = context.getPackageName();
                 int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
-                Log.i("MYLOG", "imgID: " + imgID);
+                Log.i(TAG, "imgID: " + imgID);
 
                 weatherIconImage.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
             }
