@@ -1,6 +1,7 @@
 package com.android.m4racz.stormy;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -21,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.m4racz.stormy.Utils.NetworkUtilities;
+
+import java.net.URL;
 import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity{
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
     public EditText mInputCity;
     public ImageView mWeatherIcon;
     public ImageView mSearchWeather;
+    public ImageView mLocationWeather;
 
     public TextView mWeatherForecast;
     public TextView mWeatherTemperatureCurrent;
@@ -46,15 +51,24 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Log.i(TAG, "onCreate: Ask 4 Permission 3");
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "onCreate: Ask 4 Permission 4");
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                Log.i(TAG, "onCreate: Ask 4 Permission 5");
-                Log.i(TAG, "onCreate: Location");
 
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        if (requestCode == 1) {
+
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    {
+
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+                    }
+
+                }
+
+            }
+
         }
+
     }
 
 
@@ -71,13 +85,23 @@ public class MainActivity extends AppCompatActivity{
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //SET TOOLBAR MENU
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); //disable title in toolbar
+
         //INIT LOCATION MANAGER
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        Log.i(TAG, "onCreate: INIT LOCATION MANAGER");
+        Object o = this.getSystemService(LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
 
             @Override
             public void onLocationChanged(Location location) {
+
                 Log.i(TAG, "onLocationChanged: location" + location.toString());
+
             }
 
             @Override
@@ -95,13 +119,11 @@ public class MainActivity extends AppCompatActivity{
 
             }
         };
-        //SET TOOLBAR MENU
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
-        setSupportActionBar(toolbar);
 
         //init input variables
         mInputCity =  findViewById(R.id.xInputSearch);
         mSearchWeather = findViewById(R.id.xSearchImage);
+        mLocationWeather = findViewById(R.id.xLocationImage);
 
         //init result variables
         mWeatherForecast = findViewById(R.id.xForecastDescription);
@@ -123,12 +145,20 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        //Create on click listener for button Get Forecast
+        //Create on click listener for Search by string to Get Forecast
         mSearchWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 hideKeyBoard();
-                findWeather(view);
+                findWeather(view, "input"); //search via input string
+            }
+        });
+
+        //Create on click listener for search by Location to Get Forecast
+        mLocationWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findWeather(view,"location"); //search via user location
             }
         });
 
@@ -137,18 +167,17 @@ public class MainActivity extends AppCompatActivity{
         Log.i(TAG, "onCreate: AccessFineLocation: " + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION));
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "onCreate: Ask 4 Permission 1");
+
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
-            Log.i(TAG, "onCreate: Ask 4 Permission 2");
+
         } else {
+            Log.i(TAG, "onCreate REQUEST LOCATION UPDATE");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
 
     }
-
-
-
-    /**
+   /*
+     *
      * Hide Keyboard when invoked
      */
     private void hideKeyBoard() {
@@ -160,27 +189,26 @@ public class MainActivity extends AppCompatActivity{
 
 
     /**
-     Search for weather in OpenWeather API* @param view
+     Search for weather in OpenWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
      */
-    public void findWeather(View view)  {
+    public void findWeather(View view, String searchType)  {
 
-        Log.i(TAG, "City to Search: " + mInputCity.getText().toString());
+        URL weatherURL = NetworkUtilities.getUrl(this, context, searchType);
 
         //encode city to URL and Call Async OpenWeather API
         try {
 
-            String encodedCity = URLEncoder.encode(mInputCity.getText().toString(), "UTF-8");
-            String urlStrg = "https://api.openweathermap.org/data/2.5/weather?q=" + encodedCity + "&units=metric" + "&appid=89fd3664a5ad45e46488b6af57b2a5cd";
-            Log.i(TAG,"urlStrg: " + urlStrg);
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
             DownloadForecast task = new DownloadForecast(context, this);
 
             //get forecast via AsyncTask
-            task.execute(urlStrg);
+            task.execute(weatherURL.toString());
 
 
         } catch (Exception e) {
+
             Toast.makeText(this, "Error during the Search" + e.toString(), Toast.LENGTH_SHORT).show();
+
         }
     }
 }

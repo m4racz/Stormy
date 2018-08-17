@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stormy</string>
+    <string name="app_name">Stormy Weather</string>
     <string name="get_forecast">Get Forecast</string>
     <string name="enter_city_name">Enter City Name</string>
     <string name="celsiusDegrees">°C</string>
