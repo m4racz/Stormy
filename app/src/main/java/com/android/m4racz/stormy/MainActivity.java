@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -42,8 +43,7 @@ public class MainActivity extends AppCompatActivity{
     public TextView mWeatherTemperatureMax;
     public TextView mWeatherWindSpeed;
 
-    public LocationManager locationManager;
-    public LocationListener locationListener;
+
 
     public Context context;
 
@@ -52,22 +52,6 @@ public class MainActivity extends AppCompatActivity{
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == 1) {
-
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    {
-
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
-                    }
-
-                }
-
-            }
-
-        }
 
     }
 
@@ -91,34 +75,6 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false); //disable title in toolbar
 
-        //INIT LOCATION MANAGER
-        Log.i(TAG, "onCreate: INIT LOCATION MANAGER");
-        Object o = this.getSystemService(LOCATION_SERVICE);
-        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        LocationListener locationListener = new LocationListener() {
-
-            @Override
-            public void onLocationChanged(Location location) {
-
-                Log.i(TAG, "onLocationChanged: location" + location.toString());
-
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
 
         //init input variables
         mInputCity =  findViewById(R.id.xInputSearch);
@@ -145,6 +101,22 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        mInputCity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                boolean handled = false;
+                Log.i(TAG, "onEditorAction: keyCode" + keyEvent.getKeyCode());
+                if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)
+                {
+                    handled = true;
+                    hideKeyBoard();
+                    findWeather(textView, "input");
+
+                }
+                return handled;
+            }
+        });
+
         //Create on click listener for Search by string to Get Forecast
         mSearchWeather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,20 +133,6 @@ public class MainActivity extends AppCompatActivity{
                 findWeather(view,"location"); //search via user location
             }
         });
-
-        //
-        Log.i(TAG, "onCreate: Package Manager: " + PackageManager.PERMISSION_GRANTED);
-        Log.i(TAG, "onCreate: AccessFineLocation: " + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION));
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
-
-        } else {
-            Log.i(TAG, "onCreate REQUEST LOCATION UPDATE");
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        }
-
     }
    /*
      *
@@ -192,8 +150,8 @@ public class MainActivity extends AppCompatActivity{
      Search for weather in OpenWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
      */
     public void findWeather(View view, String searchType)  {
-
-        URL weatherURL = NetworkUtilities.getUrl(this, context, searchType);
+        NetworkUtilities networkUtilities = new NetworkUtilities();
+        URL weatherURL = networkUtilities.getUrl(this, context, searchType);
 
         //encode city to URL and Call Async OpenWeather API
         try {

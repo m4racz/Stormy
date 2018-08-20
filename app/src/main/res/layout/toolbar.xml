@@ -8,26 +8,29 @@
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
     android:layout_gravity="center">
+
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-
         android:id="@+id/xLocationImage"
         android:src="@drawable/location_search"
-        />
-     <EditText
+    />
+
+    <EditText
         android:id="@+id/xInputSearch"
         android:layout_width="250dp"
+        android:maxLines="1"
         android:layout_height="match_parent"
         android:hint="@string/enter_city_name"
         android:textAlignment="center"
+        android:backgroundTint="@color/colorWhite"
+    />
 
-        />
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-
         android:id="@+id/xSearchImage"
         android:src="@drawable/search_icon"
-        />
+    />
+
 </android.support.v7.widget.Toolbar>
