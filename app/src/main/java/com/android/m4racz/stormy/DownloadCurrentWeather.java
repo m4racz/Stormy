@@ -6,6 +6,8 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.m4racz.stormy.CurrentWeather.CurrentWeather;
+import com.android.m4racz.stormy.Utils.MathUtils;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -21,9 +23,9 @@ import java.util.Set;
 /**
  * Download Forecast in AsyncTask
  */
-public class DownloadForecast extends AsyncTask<String, Void, String> {
+public class DownloadCurrentWeather extends AsyncTask<String, Void, String> {
 
-    private static final String TAG = DownloadForecast.class.getSimpleName();
+    private static final String TAG = DownloadCurrentWeather.class.getSimpleName();
 
     private TextView weatherForacast;
     private TextView weatherTemperatureCurrent;
@@ -53,18 +55,9 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
     private Activity mainActivity;
     private Context context;
 
-    DownloadForecast(Context context, MainActivity mainActivity) {
+    DownloadCurrentWeather(Context context, MainActivity mainActivity) {
         this.context = context;
         this.mainActivity = mainActivity;
-    }
-
-    private OpenWeatherCurrentWeather parseJSONgson(String jsonString){
-        OpenWeatherCurrentWeather openWeatherCurrentWeather = new OpenWeatherCurrentWeather();
-        Gson gson = new Gson();
-
-        openWeatherCurrentWeather = gson.fromJson(jsonString, OpenWeatherCurrentWeather.class);
-
-        return openWeatherCurrentWeather;
     }
 
     @Override
@@ -76,7 +69,6 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
 }
 
     @Override
-
     protected String doInBackground(String... urls) {
         //Variable declaration
         String forecastResult = "";
@@ -116,6 +108,11 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
     }
 
     @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
     protected void onPostExecute(String result){
         super.onPostExecute(result);
 
@@ -128,26 +125,30 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
         weatherIconImage = mainActivity.findViewById(R.id.xWeatherIcon);
         weatherCurrentLocation = mainActivity.findViewById(R.id.xCurrentLocation);
 
-        OpenWeatherCurrentWeather openWeatherCurrentWeather = parseJSONgson(result);
-        if (openWeatherCurrentWeather!=null){
-            Log.i(TAG, "onPostExecute openWeatherCurrentWeather:" + openWeatherCurrentWeather.toString());
+        CurrentWeather currentWeather = parseCurrentWeatherJSONgson(result);
+
+        if (currentWeather !=null){
+            Log.i(TAG, "onPostExecute currentWeather:" + currentWeather.toString());
         }
 
-        if (openWeatherCurrentWeather != null) {
+        if (currentWeather != null) {
+
+            //Round Temperatures
+            int currentTemperature = MathUtils.getRoundedTemperature(currentWeather.getMain().getTemp());
+            int minTemperature = MathUtils.getRoundedTemperature(currentWeather.getMain().getTempMin());
+            int maxTemperature = MathUtils.getRoundedTemperature(currentWeather.getMain().getTempMax());
 
             //set Text Views
-            weatherCurrentLocation.setText(String.format("%s, %s", openWeatherCurrentWeather.getName(), openWeatherCurrentWeather.getSys().getCountry()));
-            weatherForacast.setText(openWeatherCurrentWeather.getWeather().get(0).getDescription());
-            weatherTemperatureCurrent.setText(String.format("%s °C", openWeatherCurrentWeather.getMain().getTemp()));
-            weatherTemperatureMax.setText(String.format("Min: %s °C", openWeatherCurrentWeather.getMain().getTemp_max()));
-            weatherTemperatureMin.setText(String.format("Max: %s °C", openWeatherCurrentWeather.getMain().getTemp_min()));
-            weatherWindSpeed.setText(String.format("Wind: %s m/s", openWeatherCurrentWeather.getWind().getSpeed()));
-
-
+            weatherCurrentLocation.setText(String.format("%s, %s", currentWeather.getName(), currentWeather.getSys().getCountry()));
+            weatherForacast.setText(currentWeather.getWeather().get(0).getDescription());
+            weatherTemperatureCurrent.setText(String.format("%s °C", currentTemperature));
+            weatherTemperatureMax.setText(String.format("Min: %s °C", maxTemperature));
+            weatherTemperatureMin.setText(String.format("Max: %s °C", minTemperature));
+            weatherWindSpeed.setText(String.format("Wind: %s m/s", currentWeather.getWind().getSpeed()));
 
             //set Image Views
             Set keys = weatherIcons.keySet();
-            String weatherIconsGson = openWeatherCurrentWeather.getWeather().get(0).getIcon();
+            String weatherIconsGson = currentWeather.getWeather().get(0).getIcon();
             String weatherIconToSet = "weather_na";
             for (Object key : keys) {
                 if (key.equals(weatherIconsGson)) {
@@ -161,7 +162,15 @@ public class DownloadForecast extends AsyncTask<String, Void, String> {
 
             weatherIconImage.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
 
-
         }
+    }
+
+    private CurrentWeather parseCurrentWeatherJSONgson(String jsonString){
+        CurrentWeather currentWeather = new CurrentWeather();
+        Gson gson = new Gson();
+
+        currentWeather = gson.fromJson(jsonString, CurrentWeather.class);
+
+        return currentWeather;
     }
 }

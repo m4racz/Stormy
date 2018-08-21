@@ -3097,16 +3097,25 @@ public final class R {
     public static final int wrap=0x7f07008d;
     public static final int wrap_content=0x7f07008e;
     public static final int xCurrentLocation=0x7f07008f;
-    public static final int xForecastDescription=0x7f070090;
-    public static final int xInputSearch=0x7f070091;
-    public static final int xLocationImage=0x7f070092;
-    public static final int xSearchImage=0x7f070093;
-    public static final int xTemperatureCurrent=0x7f070094;
-    public static final int xTemperatureMax=0x7f070095;
-    public static final int xTemperatureMin=0x7f070096;
-    public static final int xToolBar=0x7f070097;
-    public static final int xWeatherIcon=0x7f070098;
-    public static final int xWindSpeed=0x7f070099;
+    public static final int xForecastDay1=0x7f070090;
+    public static final int xForecastDay2=0x7f070091;
+    public static final int xForecastDay3=0x7f070092;
+    public static final int xForecastDescription=0x7f070093;
+    public static final int xForecastIconDay1=0x7f070094;
+    public static final int xForecastIconDay2=0x7f070095;
+    public static final int xForecastIconDay3=0x7f070096;
+    public static final int xForecastTempDay1=0x7f070097;
+    public static final int xForecastTempDay2=0x7f070098;
+    public static final int xForecastTempDay3=0x7f070099;
+    public static final int xInputSearch=0x7f07009a;
+    public static final int xLocationImage=0x7f07009b;
+    public static final int xSearchImage=0x7f07009c;
+    public static final int xTemperatureCurrent=0x7f07009d;
+    public static final int xTemperatureMax=0x7f07009e;
+    public static final int xTemperatureMin=0x7f07009f;
+    public static final int xToolBar=0x7f0700a0;
+    public static final int xWeatherIcon=0x7f0700a1;
+    public static final int xWindSpeed=0x7f0700a2;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;
@@ -3144,17 +3153,18 @@ public final class R {
     public static final int abc_select_dialog_material=0x7f090019;
     public static final int abc_tooltip=0x7f09001a;
     public static final int activity_main=0x7f09001b;
-    public static final int notification_action=0x7f09001c;
-    public static final int notification_action_tombstone=0x7f09001d;
-    public static final int notification_template_custom_big=0x7f09001e;
-    public static final int notification_template_icon_group=0x7f09001f;
-    public static final int notification_template_part_chronometer=0x7f090020;
-    public static final int notification_template_part_time=0x7f090021;
-    public static final int select_dialog_item_material=0x7f090022;
-    public static final int select_dialog_multichoice_material=0x7f090023;
-    public static final int select_dialog_singlechoice_material=0x7f090024;
-    public static final int support_simple_spinner_dropdown_item=0x7f090025;
-    public static final int toolbar=0x7f090026;
+    public static final int activity_main_constraint=0x7f09001c;
+    public static final int notification_action=0x7f09001d;
+    public static final int notification_action_tombstone=0x7f09001e;
+    public static final int notification_template_custom_big=0x7f09001f;
+    public static final int notification_template_icon_group=0x7f090020;
+    public static final int notification_template_part_chronometer=0x7f090021;
+    public static final int notification_template_part_time=0x7f090022;
+    public static final int select_dialog_item_material=0x7f090023;
+    public static final int select_dialog_multichoice_material=0x7f090024;
+    public static final int select_dialog_singlechoice_material=0x7f090025;
+    public static final int support_simple_spinner_dropdown_item=0x7f090026;
+    public static final int toolbar=0x7f090027;
   }
   public static final class menu {
     public static final int menu=0x7f0a0000;

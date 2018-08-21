@@ -1,6 +1,6 @@
 package com.android.m4racz.stormy;
 
-import android.util.Log;
+import com.android.m4racz.stormy.CurrentWeather.CurrentWeather;
 
 import org.junit.Test;
 
@@ -13,14 +13,14 @@ import static org.junit.Assert.*;
  */
 public class StormyUnitTest {
     private static final String TAG = StormyUnitTest.class.getSimpleName();
-    private OpenWeatherCurrentWeather openWeatherCurrentWeather;
+    private CurrentWeather currentWeather;
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
     @Test
     public void testJSONJacksonParser(){
-        openWeatherCurrentWeather = new OpenWeatherCurrentWeather();
+        currentWeather = new CurrentWeather();
     }
 
 

@@ -25,6 +25,10 @@ public class NetworkUtilities {
     private static final String DYNAMIC_WEATHER_URL =
             "https://api.openweathermap.org/data/2.5/weather";
 
+    private static final String DYNAMIC_FORECAST_URL =
+            "https://api.openweathermap.org/data/2.5/forecast";
+
+
     private static final String API_KEY =
             "89fd3664a5ad45e46488b6af57b2a5cd";
     /* The format we want our API to return */
@@ -48,8 +52,8 @@ public class NetworkUtilities {
     public LocationManager locationManager;
     public LocationListener locationListener;
     private URL url = null;
-    public URL getUrl(MainActivity mainActivity, Context context, String searchType) {
-
+    private URL urlForecast = null;
+    public URL[] getUrl(MainActivity mainActivity, Context context, String searchType) {
 
         if (searchType.equals("location")) {
 
@@ -101,31 +105,33 @@ public class NetworkUtilities {
             }
 
             Uri uri = buildUrlWithLatitudeLongitude(latitude, longitude);
-            URL url = null;
+            Uri uriForecast = buildUrlWithLatitudeLongitudeForecast(latitude, longitude);
+            url = null;
+            urlForecast = null;
             try {
+                urlForecast= new URL(uriForecast.toString());
                 url = new URL(uri.toString());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
             Log.i(TAG, "url: " + url);
-
-            return url;
+            return new URL[]{url,urlForecast};
         }
-        else {
+        else if (searchType.equals("input")) {
             String cityToSearch = mainActivity.mInputCity.getText().toString();
             Uri uri = buildUrlWithLocationQuery(cityToSearch);
-
-
+            Uri uriForecast = buildUrlWithLocationQueryForecast(cityToSearch);
             try {
                 url = new URL(uri.toString());
+                urlForecast = new URL(uriForecast.toString());
             } catch (MalformedURLException e) {
-
                 e.printStackTrace();
             }
             Log.i(TAG, "url: " + url);
-
-            return url;
+            return new URL[]{url, urlForecast};
         }
+        //nothing else is valid
+        return null;
     }
 
     //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
@@ -147,9 +153,37 @@ public class NetworkUtilities {
         return builtURI;
     }
 
-    // TODO: 17.08.2018 imlementace GPS lokace 
+    //Example URL http://api.openweathermap.org/data/2.5/forecast?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
+    private static Uri buildUrlWithLocationQueryForecast(String cityToSearch) {
+        String encodedCity = "";
+        //encode city to UTF-8
+        try {
+            encodedCity = URLEncoder.encode(cityToSearch, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        Uri builtURI = Uri.parse(DYNAMIC_FORECAST_URL)
+                .buildUpon()
+                .appendQueryParameter(QUERY_PARAM, encodedCity)
+                .appendQueryParameter(UNITS_PARAM, units)
+                .appendQueryParameter(APP_ID,API_KEY)
+                .build();
+        return builtURI;
+    }
+
     public static Uri buildUrlWithLatitudeLongitude(double latitude, double longitude){
         Uri builtURI = Uri.parse(DYNAMIC_WEATHER_URL)
+                .buildUpon()
+                .appendQueryParameter(LAT_PARAM, String.valueOf(latitude))
+                .appendQueryParameter(LON_PARAM, String.valueOf(longitude))
+                .appendQueryParameter(UNITS_PARAM,units)
+                .appendQueryParameter(APP_ID,API_KEY)
+                .build();
+        return builtURI;
+    }
+    public static Uri buildUrlWithLatitudeLongitudeForecast(double latitude, double longitude){
+        Uri builtURI = Uri.parse(DYNAMIC_FORECAST_URL)
                 .buildUpon()
                 .appendQueryParameter(LAT_PARAM, String.valueOf(latitude))
                 .appendQueryParameter(LON_PARAM, String.valueOf(longitude))

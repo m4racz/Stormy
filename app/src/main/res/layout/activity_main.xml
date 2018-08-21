@@ -7,6 +7,12 @@
     android:background="@drawable/bcg_mainacitivity"
     tools:context=".MainActivity">
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.constraint.ConstraintLayout>
+
     <include
         android:id="@+id/xToolBar"
         layout="@layout/toolbar"
@@ -18,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="107dp"
+        android:layout_marginBottom="192dp"
+        android:text="Forecast Description"
         android:textColor="@color/colorWhite"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,63 +37,69 @@
         android:id="@+id/xWeatherIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_above="@+id/xForecastDescription"
+        android:layout_alignParentStart="true"
         android:contentDescription="TODO"
-        android:src="@drawable/weather_na"/>
+        android:src="@drawable/weather_na"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/xTemperatureCurrent"
-        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/xForecastDescription"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-86dp"
-
-        android:textSize="24sp"
+        android:layout_marginTop="-192dp"
+        android:text="Temperature"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
         android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/xTemperatureMin"
-        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/xTemperatureCurrent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:textSize="12sp" />
+        android:layout_above="@+id/xTemperatureMax"
+        android:layout_toStartOf="@+id/xForecastDescription"
+        android:text="Temperature Min"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:layout_toLeftOf="@+id/xForecastDescription" />
 
     <TextView
         android:id="@+id/xTemperatureMax"
-        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/xTemperatureMin"
-        android:layout_alignStart="@+id/xTemperatureMin"
-        android:layout_below="@+id/xTemperatureMin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/xWindSpeed"
 
-        android:textSize="12sp" />
+        android:layout_marginBottom="130dp"
+        android:text="Temperature Max"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:layout_alignLeft="@+id/xWindSpeed" />
 
     <TextView
         android:id="@+id/xWindSpeed"
-        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/xTemperatureMin"
-        android:layout_alignStart="@+id/xTemperatureMin"
-        android:layout_below="@+id/xTemperatureMax"
+        android:layout_alignParentBottom="true"
 
-        android:textSize="12sp" />
+        android:layout_alignStart="@+id/xTemperatureMin"
+        android:layout_marginBottom="115dp"
+        android:text="Wind Speed"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:layout_alignLeft="@+id/xTemperatureMin" />
 
     <TextView
         android:id="@+id/xCurrentLocation"
-        android:textSize="20sp"
-        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/xToolBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"
-        />
+        android:text="Location"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
 
 </RelativeLayout>

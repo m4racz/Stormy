@@ -1,16 +1,8 @@
 package com.android.m4racz.stormy;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -26,7 +18,6 @@ import android.widget.Toast;
 import com.android.m4racz.stormy.Utils.NetworkUtilities;
 
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -68,7 +59,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_constraint);
 
         //SET TOOLBAR MENU
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
@@ -91,6 +82,7 @@ public class MainActivity extends AppCompatActivity{
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
+
         //Create onFocusChange listener to hide keyboard
         mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -147,21 +139,21 @@ public class MainActivity extends AppCompatActivity{
 
 
     /**
-     Search for weather in OpenWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
+     Search for weather in CurrentWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
      */
     public void findWeather(View view, String searchType)  {
-        NetworkUtilities networkUtilities = new NetworkUtilities();
-        URL weatherURL = networkUtilities.getUrl(this, context, searchType);
 
-        //encode city to URL and Call Async OpenWeather API
+        NetworkUtilities networkUtilities = new NetworkUtilities();
+        URL[] weatherURL = networkUtilities.getUrl(this, context, searchType);
+
         try {
 
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            DownloadForecast task = new DownloadForecast(context, this);
-
+            DownloadCurrentWeather taskCurrentWeather = new DownloadCurrentWeather(context, this);
+            DownloadForecastWeather taskForecastWeather = new DownloadForecastWeather(context,this);
             //get forecast via AsyncTask
-            task.execute(weatherURL.toString());
-
+            taskCurrentWeather.execute(weatherURL[0].toString());
+            taskForecastWeather.execute(weatherURL[1].toString());
 
         } catch (Exception e) {
 
