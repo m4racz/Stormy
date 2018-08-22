@@ -1,14 +1,19 @@
 package com.android.m4racz.stormy;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,8 +47,6 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-
     }
 
 
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //on create method that is run when application starts
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //SET MAIN SCREEN
@@ -82,7 +86,17 @@ public class MainActivity extends AppCompatActivity{
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
+        //change color of status bar
+        Window window = this.getWindow();
 
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorGrey));
         //Create onFocusChange listener to hide keyboard
         mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

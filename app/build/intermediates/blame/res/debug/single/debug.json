@@ -660,10 +660,6 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-xxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-hdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
@@ -1298,6 +1294,10 @@
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_material.xml.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable\\abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bcg_mainactivity_light.xml.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\drawable\\bcg_mainactivity_light.xml"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",

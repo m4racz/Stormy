@@ -574,21 +574,6 @@
             ]
         },
         {
-            "outputFile": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\values-port_values-port.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\values-port\\values-port.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "55",
-                        "endOffsets": "106"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\values-zh-rTW_values-zh-rTW.arsc.flat",
             "map": [
                 {
@@ -616,6 +601,21 @@
                         "startOffsets": "1811",
                         "endColumns": "100",
                         "endOffsets": "1907"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\values-port_values-port.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
                     }
                 }
             ]
