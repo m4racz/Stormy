@@ -7,4 +7,5 @@
     <string name="min">Min: </string>
     <string name="wind">Wind: </string>
     <string name="windSpeedUnit">m/s</string>
+    <string name="progressMessage">Downloading Weather...</string>
 </resources>

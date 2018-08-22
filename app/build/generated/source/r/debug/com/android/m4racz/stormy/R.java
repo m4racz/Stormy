@@ -3209,10 +3209,11 @@ public final class R {
     public static final int get_forecast=0x7f0c0020;
     public static final int max=0x7f0c0021;
     public static final int min=0x7f0c0022;
-    public static final int search_menu_title=0x7f0c0023;
-    public static final int status_bar_notification_info_overflow=0x7f0c0024;
-    public static final int wind=0x7f0c0025;
-    public static final int windSpeedUnit=0x7f0c0026;
+    public static final int progressMessage=0x7f0c0023;
+    public static final int search_menu_title=0x7f0c0024;
+    public static final int status_bar_notification_info_overflow=0x7f0c0025;
+    public static final int wind=0x7f0c0026;
+    public static final int windSpeedUnit=0x7f0c0027;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f0d0000;

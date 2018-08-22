@@ -21,25 +21,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36b99889-a522-4b6a-8850-0021ef4092f7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/Clouds.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/CloudsBean.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/Coord.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/Main.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/Sys.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/Weather.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/Wind.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/City.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Clouds.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Coord.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/ForecastWeather.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/List.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Main.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Rain.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Sys.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Weather.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Wind.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_constraint.xml" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
@@ -56,41 +37,31 @@
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/graphics/drawable/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/graphics/drawable/R.java" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/m4racz/stormy/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/m4racz/stormy/R.java" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/compat/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/compat/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreui/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreui/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreutils/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreutils/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/fragment/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/fragment/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/graphics/drawable/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/graphics/drawable/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/DownloadForecast.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/compat/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/compat/R$string.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreui/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreui/R$string.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreutils/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/coreutils/R$string.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/fragment/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/fragment/R$string.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/graphics/drawable/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/graphics/drawable/R$string.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$string.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/MainActivity.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$id.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$integer.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$layout.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$mipmap.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$string.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$style.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/android/m4racz/stormy/R$styleable.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecast.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadCurrentWeather.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadCurrentWeather.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/FetchWeatherInfo.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/OpenWeatherCurrentWeather.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/CurrentWeather.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/OpenWeatherForecast.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/LocationUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/MathUtils.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/NetworkUtilities.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/NetworkUtilities.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/android/m4racz/stormy/StormyUnitTest.java" afterPath="$PROJECT_DIR$/app/src/test/java/com/android/m4racz/stormy/StormyUnitTest.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -123,16 +94,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="activity_main_constraint.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_constraint.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="222" column="41" lean-forward="false" selection-start-line="222" selection-start-column="41" selection-end-line="222" selection-end-column="41" />
-              <folding />
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="151" column="86" lean-forward="false" selection-start-line="151" selection-start-column="86" selection-end-line="151" selection-end-column="86" />
+              <folding>
+                <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
+              </folding>
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="FetchWeatherInfo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/FetchWeatherInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3724">
+              <caret line="211" column="72" lean-forward="false" selection-start-line="211" selection-start-column="72" selection-end-line="211" selection-end-column="72" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="initializer##0;class#1040:1681" expanded="false" />
+                <element signature="e#2162#2210#0" expanded="true" />
+                <element signature="e#2366#2374#0" expanded="true" />
+                <element signature="e#2866#2867#0" expanded="true" />
+                <element signature="e#2912#2913#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -2194,23 +2181,24 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/OpenWeather/CurrentWeather.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/MathUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/NetworkUtilities.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/OpenWeather/ForecastWeather.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/ForecastWeather.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/ForecastWeather/Main.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/CloudsBean.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/CurrentWeather/CurrentWeather.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadCurrentWeather.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_constraint.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadCurrentWeather.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/FetchWeatherInfo.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="2073" />
-    <option name="y" value="90" />
-    <option name="width" value="1616" />
-    <option name="height" value="916" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1804" />
+    <option name="y" value="106" />
+    <option name="width" value="1918" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -2246,6 +2234,17 @@
             <path>
               <item name="Stormy" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Stormy" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Stormy" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="stormy" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="Stormy" type="1abcf292:AndroidViewProjectNode" />
@@ -2615,7 +2614,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534769326193</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="New forecast classes and constraint layout">
+      <created>1534865487605</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1534865487605</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2651,7 +2657,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2668,14 +2675,14 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1913646" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13717695" sideWeight="0.49253732" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1913646" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13717695" sideWeight="0.49253732" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31770834" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3856859" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16451614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2766,30 +2773,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java</url>
-          <line>136</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="20" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/weather_na.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2878,14 +2869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3645,31 +3628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="147" column="59" lean-forward="false" selection-start-line="147" selection-start-column="59" selection-end-line="147" selection-end-column="59" />
-          <folding>
-            <element signature="initializer##0;class#1252:1893" expanded="false" />
-            <element signature="method#onPreExecute#0;class#DownloadForecastWeather#0" expanded="false" />
-            <element signature="e#3750#3751#0" expanded="false" />
-            <element signature="e#3796#3797#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="152" column="69" lean-forward="false" selection-start-line="152" selection-start-column="69" selection-end-line="152" selection-end-column="69" />
-          <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#4179#4371#0" expanded="false" />
-            <element signature="e#4370#4371#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/Utils/NetworkUtilities.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -3677,18 +3635,6 @@
           <folding>
             <element signature="imports" expanded="false" />
             <element signature="class#2945:3593" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadCurrentWeather.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding>
-            <element signature="initializer##0;class#1150:1791" expanded="false" />
-            <element signature="method#onPreExecute#0;class#DownloadCurrentWeather#0" expanded="false" />
-            <element signature="method#parseCurrentWeatherJSONgson#0;class#DownloadCurrentWeather#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3702,6 +3648,55 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer2">
         <state />
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-27/android.jar!/android/os/AsyncTask.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="151" column="86" lean-forward="false" selection-start-line="151" selection-start-column="86" selection-end-line="151" selection-end-column="86" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/DownloadForecastWeather.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="173" column="3" lean-forward="false" selection-start-line="173" selection-start-column="3" selection-end-line="178" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/m4racz/stormy/FetchWeatherInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3724">
+          <caret line="211" column="72" lean-forward="false" selection-start-line="211" selection-start-column="72" selection-end-line="211" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="initializer##0;class#1040:1681" expanded="false" />
+            <element signature="e#2162#2210#0" expanded="true" />
+            <element signature="e#2366#2374#0" expanded="true" />
+            <element signature="e#2866#2867#0" expanded="true" />
+            <element signature="e#2912#2913#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

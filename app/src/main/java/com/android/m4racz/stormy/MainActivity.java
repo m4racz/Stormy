@@ -149,11 +149,9 @@ public class MainActivity extends AppCompatActivity{
         try {
 
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            DownloadCurrentWeather taskCurrentWeather = new DownloadCurrentWeather(context, this);
-            DownloadForecastWeather taskForecastWeather = new DownloadForecastWeather(context,this);
+            FetchWeatherInfo taskCurrentWeather = new FetchWeatherInfo(context, this);
             //get forecast via AsyncTask
-            taskCurrentWeather.execute(weatherURL[0].toString());
-            taskForecastWeather.execute(weatherURL[1].toString());
+            taskCurrentWeather.execute(weatherURL[0].toString(), weatherURL[1].toString());
 
         } catch (Exception e) {
 
