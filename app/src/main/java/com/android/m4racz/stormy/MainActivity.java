@@ -1,10 +1,16 @@
 package com.android.m4racz.stormy;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,29 +26,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.m4racz.stormy.Utils.NetworkUtilities;
+import com.android.m4racz.stormy.Utils.NetworkUtilsOpenWeather;
 
 import java.net.URL;
+import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     public EditText mInputCity;
-    public ImageView mWeatherIcon;
     public ImageView mSearchWeather;
     public ImageView mLocationWeather;
 
-    public TextView mWeatherForecast;
-    public TextView mWeatherTemperatureCurrent;
-    public TextView mWeatherTemperatureMin;
-    public TextView mWeatherTemperatureMax;
-    public TextView mWeatherWindSpeed;
-
-
-
+    public LocationManager locationManager;
+    public LocationListener locationListener;
+    public Location location;
     public Context context;
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -57,35 +57,83 @@ public class MainActivity extends AppCompatActivity{
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
+
+        } else{
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        }
+
+    }
+
+    /** Stop the updates when Activity is paused */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        locationManager.removeUpdates(locationListener);
+    }
     //on create method that is run when application starts
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_constraint);
 
+        //INIT UI
+        mInputCity = this.findViewById(R.id.xInputSearch);
+        mSearchWeather = this.findViewById(R.id.xSearchImage);
+        mLocationWeather = this.findViewById(R.id.xLocationImage);
+
         //SET TOOLBAR MENU
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false); //disable title in toolbar
-
-
-        //init input variables
-        mInputCity =  findViewById(R.id.xInputSearch);
-        mSearchWeather = findViewById(R.id.xSearchImage);
-        mLocationWeather = findViewById(R.id.xLocationImage);
-
-        //init result variables
-        mWeatherForecast = findViewById(R.id.xForecastDescription);
-        mWeatherIcon = findViewById(R.id.xWeatherIcon);
-        mWeatherTemperatureMax = findViewById(R.id.xTemperatureMax);
-        mWeatherTemperatureMin = findViewById(R.id.xTemperatureMin);
-        mWeatherTemperatureCurrent = findViewById(R.id.xTemperatureCurrent);
-        mWeatherWindSpeed = findViewById(R.id.xWindSpeed);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); //disable title in toolbar
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
+
+        //Configure Location Manager
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+                //Toast.makeText(MainActivity.this, "Provider enabled", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+                Toast.makeText(MainActivity.this, "Provider disabled, Location will not work.", Toast.LENGTH_SHORT).show();
+            }
+        };
+        //check if we have permission to access location
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
+
+        } else{
+
+            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        }
+
         //change color of status bar
         Window window = this.getWindow();
 
@@ -96,7 +144,7 @@ public class MainActivity extends AppCompatActivity{
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorGrey));
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar));
         //Create onFocusChange listener to hide keyboard
         mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -116,7 +164,7 @@ public class MainActivity extends AppCompatActivity{
                 {
                     handled = true;
                     hideKeyBoard();
-                    findWeather(textView, "input");
+                    findWeather("input");
 
                 }
                 return handled;
@@ -128,7 +176,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 hideKeyBoard();
-                findWeather(view, "input"); //search via input string
+                findWeather("input"); //search via input string
             }
         });
 
@@ -136,9 +184,11 @@ public class MainActivity extends AppCompatActivity{
         mLocationWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findWeather(view,"location"); //search via user location
+                findWeather("location"); //search via user location
             }
         });
+        //SEARCH FOR CURRENT LOCATION
+        findWeather("location");
     }
    /*
      *
@@ -155,17 +205,18 @@ public class MainActivity extends AppCompatActivity{
     /**
      Search for weather in CurrentWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
      */
-    public void findWeather(View view, String searchType)  {
+    public void findWeather(String searchType)  {
 
-        NetworkUtilities networkUtilities = new NetworkUtilities();
-        URL[] weatherURL = networkUtilities.getUrl(this, context, searchType);
+        NetworkUtilsOpenWeather networkUtilsOpenWeather = new NetworkUtilsOpenWeather();
+        URL[] weatherURL = networkUtilsOpenWeather.getUrl(this, searchType);
 
         try {
 
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            FetchWeatherInfo taskCurrentWeather = new FetchWeatherInfo(context, this);
+            FetchWeatherInfo fetchWeatherInfo = new FetchWeatherInfo(context, this);
             //get forecast via AsyncTask
-            taskCurrentWeather.execute(weatherURL[0].toString(), weatherURL[1].toString());
+            fetchWeatherInfo.execute(weatherURL[0].toString(), weatherURL[1].toString());
+            Log.i(TAG, "findWeather fetchWeatherInfo.forecastWeather: " + fetchWeatherInfo);
 
         } catch (Exception e) {
 
