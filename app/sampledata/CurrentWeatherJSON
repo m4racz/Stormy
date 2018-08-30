@@ -1,0 +1,42 @@
+{
+  "base": "stations",
+  "clouds": {
+    "all": 20
+  },
+  "cod": 200,
+  "coord": {
+    "lat": 50.05,
+    "lon": 14.44
+  },
+  "dt": 1535103000,
+  "id": 3070744,
+  "main": {
+    "humidity": 83,
+    "pressure": 1011,
+    "temp": 21.43,
+    "temp_max": 23,
+    "temp_min": 20
+  },
+  "name": "Michle",
+  "sys": {
+    "country": "CZ",
+    "id": 5898,
+    "message": 0.0047,
+    "sunrise": 1535083531,
+    "sunset": 1535133749,
+    "type": 1
+  },
+  "visibility": 10000,
+  "weather": [
+    {
+      "description": "few clouds",
+      "icon": "02d",
+      "id": 801,
+      "main": "Clouds"
+    }
+  ],
+  "wind": {
+    "deg": 200,
+    "speed": 3.6
+  }
+}

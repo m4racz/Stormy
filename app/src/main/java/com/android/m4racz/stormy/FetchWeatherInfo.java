@@ -9,17 +9,24 @@ import android.widget.TextView;
 
 import com.android.m4racz.stormy.CurrentWeather.CurrentWeather;
 import com.android.m4racz.stormy.ForecastWeather.ForecastWeather;
-import com.android.m4racz.stormy.Utils.MathUtils;
+import com.android.m4racz.stormy.ForecastWeather.List;
+import com.android.m4racz.stormy.Utils.CalcUtils;
+import com.android.m4racz.stormy.Utils.NetworkUtils;
+import com.android.m4racz.stormy.Utils.NetworkUtilsCityTimeZone;
+import com.android.m4racz.stormy.Utils.WeatherUtils;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import org.w3c.dom.Text;
+
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.TimeZone;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -29,10 +36,13 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
 
     private static final String TAG = FetchWeatherInfo.class.getSimpleName();
 
+    private static ForecastWeather forecastWeather;
+    private static CurrentWeather currentWeather;
+
     //Create Progress Dialog to show that something is going on
     private ProgressDialog dialog;
 
-    private static Hashtable weatherIcons = new Hashtable<String,String>(){{
+    public static Hashtable weatherIcons = new Hashtable<String, String>() {{
         put("01d", "weather_sunny");
         put("01n", "weather_sunny_night");
         put("02d", "weather_few_clouds");
@@ -43,6 +53,7 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
         put("04n", "weather_broken_clouds_night");
         put("09d", "weather_drizzle");
         put("10d", "weather_rain");
+        put("10n", "weather_rain");
         put("11d", "weather_thunderstorm");
         put("13d", "weather_snow");
         put("50d", "weather_atmosphere");
@@ -51,6 +62,7 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
 
     private Activity mainActivity;
     private Context context;
+
 
     FetchWeatherInfo(Context context, MainActivity mainActivity) {
         this.context = context;
@@ -69,11 +81,11 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
     @Override
     protected ArrayList<String> doInBackground(String... urls) {
 
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
         //try to get the weather information from openweather API
         try {
-            String currentWeather = getDataFromWeb(urls[0]);
-            String forecastWeather = getDataFromWeb(urls[1]);
+            String currentWeather = NetworkUtils.getDataFromWeb(urls[0]);
+            String forecastWeather = NetworkUtils.getDataFromWeb(urls[1]);
             result.add(currentWeather);
             result.add(forecastWeather);
             return result;
@@ -94,29 +106,24 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
     protected void onPostExecute(ArrayList<String> result){
         //create variables for update current weather UI
 
-        TextView weatherForacast;
+        TextView weatherCurrentForecast;
         TextView weatherTemperatureCurrent;
         TextView weatherTemperatureMax;
         TextView weatherTemperatureMin;
         TextView weatherWindSpeed;
         ImageView weatherIconImage;
         TextView weatherCurrentLocation;
+        TextView weatherForecastDate;
 
         //init current weather UI objects
-        weatherForacast = mainActivity.findViewById(R.id.xForecastDescription);
+        weatherCurrentForecast = mainActivity.findViewById(R.id.xForecastDescription);
         weatherTemperatureCurrent = mainActivity.findViewById(R.id.xTemperatureCurrent);
         weatherTemperatureMax = mainActivity.findViewById(R.id.xTemperatureMax);
         weatherTemperatureMin = mainActivity.findViewById(R.id.xTemperatureMin);
         weatherWindSpeed = mainActivity.findViewById(R.id.xWindSpeed);
         weatherIconImage = mainActivity.findViewById(R.id.xWeatherIcon);
         weatherCurrentLocation = mainActivity.findViewById(R.id.xCurrentLocation);
-
-        //init forecast weather UI objects
-
-
-        //transform json to JAVA CLASS
-        CurrentWeather currentWeather = new CurrentWeather();
-        ForecastWeather forecastWeather = new ForecastWeather();
+        weatherForecastDate = mainActivity.findViewById(R.id.xForecastDate);
 
         if(result!=null) {
             if (result.size() == 2) {
@@ -129,18 +136,53 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 }
             }
         }
+        String timeZoneId = "";
+        if (forecastWeather!=null){
 
+            //get timeZone for Location
+            FetchTimeZoneInfo fetchTimeZoneInfo = new FetchTimeZoneInfo (context, (MainActivity) mainActivity);
+            NetworkUtilsCityTimeZone networkUtilsCityTimeZone = new NetworkUtilsCityTimeZone();
+
+            Double latitude = forecastWeather.getCity().getCoord().getLat();
+            Double longitude = forecastWeather.getCity().getCoord().getLon();
+
+            URL locationTimeZoneURL = networkUtilsCityTimeZone.getUrl(latitude,longitude);
+
+            try {
+                timeZoneId = fetchTimeZoneInfo.execute(locationTimeZoneURL.toString()).get();
+                Log.i(TAG, "onPostExecute: timeZoneId: " + timeZoneId);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            for (int k = 0; k < 3; k++) {
+                //get forecast for tomorrow
+                List weatherList = forecastWeather.getList().get(k);
+                String date = weatherList.getDtTxt();
+                WeatherUtils.setWeatherForecastUI(mainActivity, context, weatherList, k, timeZoneId);
+                Log.i(TAG, "onPostExecute: date converted " + date);
+            }
+        }
         //Set update UI with current weather data
         if (currentWeather != null) {
 
+            //recalculate currentweather data with time zone
+            Calendar forecastdate = WeatherUtils.convertCurrentWeatherToCorrectTimeZone(currentWeather, timeZoneId);
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            df.setTimeZone(TimeZone.getTimeZone(timeZoneId));
+            Log.i(TAG, "convertCurrentWeatherToCorrectTimeZone: df date " + df.format((forecastdate.getTime())).toString());
+
             //Round Temperatures
-            int currentTemperature = MathUtils.getRoundedTemperature(currentWeather.getMain().getTemp());
-            int minTemperature = MathUtils.getRoundedTemperature(currentWeather.getMain().getTempMin());
-            int maxTemperature = MathUtils.getRoundedTemperature(currentWeather.getMain().getTempMax());
+            int currentTemperature = CalcUtils.getRoundedTemperature(currentWeather.getMain().getTemp());
+            int minTemperature = CalcUtils.getRoundedTemperature(currentWeather.getMain().getTempMin());
+            int maxTemperature = CalcUtils.getRoundedTemperature(currentWeather.getMain().getTempMax());
 
             //set Text Views
+            weatherForecastDate.setText(df.format((forecastdate.getTime())).toString());
             weatherCurrentLocation.setText(String.format("%s, %s", currentWeather.getName(), currentWeather.getSys().getCountry()));
-            weatherForacast.setText(currentWeather.getWeather().get(0).getDescription());
+            weatherCurrentForecast.setText(currentWeather.getWeather().get(0).getDescription());
             weatherTemperatureCurrent.setText(String.format("%s °C", currentTemperature));
             weatherTemperatureMax.setText(String.format("Min: %s °C", maxTemperature));
             weatherTemperatureMin.setText(String.format("Max: %s °C", minTemperature));
@@ -164,92 +206,24 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
 
 
         }
-        if (forecastWeather!=null){
-            //create variables for update forecast weather UI
-            TextView weatherForecastDay1;
-            TextView weatherForecastDay2;
-            TextView weatherForecastDay3;
-            TextView weatherForecastTempDay1;
-            TextView weatherForecastTempDay2;
-            TextView weatherForecastTempDay3;
-            ImageView weatherForecastIconDay1;
-            ImageView weatherForecastIconDay2;
-            ImageView weatherForecastIconDay3;
 
-            //init current weather UI objects
-            weatherForecastDay1 = mainActivity.findViewById(R.id.xForecastDay1);
-            weatherForecastDay2 = mainActivity.findViewById(R.id.xForecastDay2);
-            weatherForecastDay3 = mainActivity.findViewById(R.id.xForecastDay3);
-
-            weatherForecastTempDay1 = mainActivity.findViewById(R.id.xForecastTempDay1);
-            weatherForecastTempDay2 = mainActivity.findViewById(R.id.xForecastTempDay2);
-            weatherForecastTempDay3 = mainActivity.findViewById(R.id.xForecastTempDay3);
-
-            weatherForecastIconDay1 = mainActivity.findViewById(R.id.xForecastIconDay1);
-            weatherForecastIconDay2 = mainActivity.findViewById(R.id.xForecastIconDay2);
-            weatherForecastIconDay3 = mainActivity.findViewById(R.id.xForecastIconDay3);
-
-            //round temperatures
-
-
-        }
         //close progress dialog
         if(dialog.isShowing()){
             dialog.dismiss();
         }
     }
-    private ForecastWeather parseForecastWeatherJSONgson(String jsonString){
-        ForecastWeather forecastWeather = new ForecastWeather();
+
+    private ForecastWeather parseForecastWeatherJSONgson(String jsonString)
+    {
         Gson gson = new Gson();
         forecastWeather = gson.fromJson(jsonString, ForecastWeather.class);
         return forecastWeather;
     }
 
-    private CurrentWeather parseCurrentWeatherJSONgson(String jsonString){
-        CurrentWeather currentWeather = new CurrentWeather();
+    private CurrentWeather parseCurrentWeatherJSONgson(String jsonString)
+    {
         Gson gson = new Gson();
-
         currentWeather = gson.fromJson(jsonString, CurrentWeather.class);
-
         return currentWeather;
-    }
-
-    private String getDataFromWeb (String urlString ){
-
-        StringBuilder forecastResult = new StringBuilder();
-        HttpURLConnection myConnection = null;
-        try {
-            URL url = new URL(urlString);
-            //HttpURLConnection myConnection;
-            myConnection = (HttpURLConnection) url.openConnection(); //opens the connection to passed URL
-            InputStream inputStream = myConnection.getInputStream(); //get the input stream
-
-            InputStreamReader reader = new InputStreamReader(inputStream);
-
-            int data = reader.read();
-            while (data != -1){
-                char current = (char) data; //get current char from the stream
-
-                forecastResult.append(current); //append the char to forcast Result
-
-                data = reader.read(); //Move to the next char until we reach end of the stream
-            }
-
-            //return final result
-            Log.i(TAG, "forecastResult" + forecastResult);
-            return forecastResult.toString();
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
-        finally {
-
-            if (myConnection != null) {
-                myConnection.disconnect();
-            }
-
-        }
-        return forecastResult.toString();
     }
 }

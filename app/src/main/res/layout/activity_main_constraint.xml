@@ -9,8 +9,7 @@
 
     <include
         android:id="@+id/xToolBar"
-        layout="@layout/toolbar"
-    />
+        layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/xForecastDescription"
@@ -21,17 +20,16 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Forecast Description"
         android:textColor="@color/colorWhite"
-        android:textSize="21sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xWeatherIcon" />
-
+        <!-- android:text="Forecast Description" -->
     <ImageView
         android:id="@+id/xWeatherIcon"
-        android:layout_width="248dp"
-        android:layout_height="271dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -43,7 +41,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xCurrentLocation" />
-
+    <!-- android:text="Forecast Description" -->
     <TextView
         android:id="@+id/xTemperatureCurrent"
         android:layout_width="wrap_content"
@@ -52,15 +50,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Temperature"
+
         android:textColor="@color/colorWhite"
-        android:textSize="30sp"
+        android:textSize="45sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xForecastDescription" />
-
+    <!-- android:text="Temperature" -->
     <TextView
         android:id="@+id/xTemperatureMin"
         android:layout_width="wrap_content"
@@ -68,12 +66,11 @@
         android:layout_marginBottom="136dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="Temperature Min"
         android:textColor="@color/colorWhite"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- android:text="Temperature Min" -->
     <TextView
         android:id="@+id/xTemperatureMax"
 
@@ -82,14 +79,14 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="Temperature Max"
+
         android:textColor="@color/colorWhite"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xTemperatureMin"
         app:layout_constraintVertical_bias="0.0" />
-
+    <!-- android:text="Temperature Max"-->
     <TextView
         android:id="@+id/xWindSpeed"
 
@@ -98,14 +95,13 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="Wind Speed"
         android:textColor="@color/colorWhite"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xTemperatureMax"
         app:layout_constraintVertical_bias="0.0" />
-
+    <!-- android:text="Wind Speed"-->
     <TextView
         android:id="@+id/xCurrentLocation"
         android:layout_width="wrap_content"
@@ -115,19 +111,20 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Location"
+
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xToolBar" />
-
+        <!-- android:text="Location" -->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:background="@color/colorToolbar"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -139,31 +136,36 @@
                 android:id="@+id/xForecastDay1"
                 android:layout_width="0dp"
                 android:layout_column="1"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="Day1"
+
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
+                <!-- android:text="Day1" -->
 
             <TextView
                 android:id="@+id/xForecastDay2"
                 android:layout_width="0dp"
                 android:layout_column="2"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="Day2"
+
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
-
+                <!--android:text="Day2"-->
             <TextView
                 android:id="@+id/xForecastDay3"
                 android:layout_width="0dp"
                 android:layout_column="3"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="Day3"
+
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
+                <!--android:text="Day3"-->
         </TableRow>
 
         <TableRow
@@ -175,31 +177,30 @@
                 android:layout_width="0dp"
                 android:layout_column="1"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
-                android:textSize="12sp"
-                android:text="tempD1"
-                android:textAlignment="center" />
 
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp" />
+                <!--android:text="tempD1" -->
             <TextView
                 android:id="@+id/xForecastTempDay2"
                 android:layout_width="0dp"
                 android:layout_column="2"
                 android:layout_weight="1"
-                android:textColor="@color/colorWhite"
-                android:textSize="12sp"
-                android:text="tempD2"
-                android:textAlignment="center" />
 
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp" />
+                <!--android:text="tempD2"-->
             <TextView
                 android:id="@+id/xForecastTempDay3"
                 android:layout_width="0dp"
                 android:layout_column="3"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 android:textColor="@color/colorWhite"
-                android:textSize="12sp"
-                android:text="tempD3"
-                android:textAlignment="center" />
-
+                android:textSize="12sp" />
+                <!--android:text="tempD3"-->
         </TableRow>
 
         <TableRow
@@ -208,32 +209,48 @@
 
             <ImageView
                 android:id="@+id/xForecastIconDay1"
-                android:src="@drawable/weather_rain"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_column="1"
                 android:layout_weight="1"
+                android:src="@drawable/weather_rain"
                 android:textAlignment="center" />
 
             <ImageView
                 android:id="@+id/xForecastIconDay2"
-                android:src="@drawable/weather_rain"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_column="2"
                 android:layout_weight="1"
+                android:src="@drawable/weather_rain"
                 android:textAlignment="center" />
 
             <ImageView
                 android:id="@+id/xForecastIconDay3"
-                android:src="@drawable/weather_rain"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_column="3"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:src="@drawable/weather_rain" />
 
         </TableRow>
 
     </TableLayout>
 
+    <TextView
+        android:id="@+id/xForecastDate"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginStart="280dp"
+
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xTemperatureMax"
+        app:layout_constraintVertical_bias="0.0" />
+        <!--android:text="forecast date"-->
 </android.support.constraint.ConstraintLayout>
