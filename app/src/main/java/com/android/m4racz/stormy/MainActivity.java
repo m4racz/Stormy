@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(String s) {
-                Toast.makeText(MainActivity.this, "Provider disabled, Location will not work.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Provider disabled, Location GPS will not work.", Toast.LENGTH_SHORT).show();
             }
         };
         //check if we have permission to access location
