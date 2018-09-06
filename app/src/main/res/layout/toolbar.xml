@@ -3,34 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:background="@color/colorToolbar"
-    android:elevation="5dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
-    android:layout_gravity="center">
+    app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
     <ImageView
+        android:id="@+id/xLocationImage"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:id="@+id/xLocationImage"
-        android:src="@drawable/location_search"
-    />
+        android:src="@drawable/location_search" />
 
     <EditText
         android:id="@+id/xInputSearch"
         android:layout_width="250dp"
-        android:maxLines="1"
         android:layout_height="match_parent"
-        android:hint="@string/enter_city_name"
-        android:textAlignment="center"
         android:backgroundTint="@color/colorWhite"
-    />
+        android:hint="@string/enter_city_name"
+        android:maxLines="1"
+        android:textAlignment="center" />
 
     <ImageView
+        android:id="@+id/xSearchImage"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:id="@+id/xSearchImage"
-        android:src="@drawable/search_icon"
-    />
+        android:src="@drawable/search_icon" />
 
 </android.support.v7.widget.Toolbar>

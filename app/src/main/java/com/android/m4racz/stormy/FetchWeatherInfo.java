@@ -1,9 +1,11 @@
 package com.android.m4racz.stormy;
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +17,6 @@ import com.android.m4racz.stormy.Utils.NetworkUtils;
 import com.android.m4racz.stormy.Utils.NetworkUtilsCityTimeZone;
 import com.android.m4racz.stormy.Utils.WeatherUtils;
 import com.google.gson.Gson;
-
-import org.w3c.dom.Text;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -30,7 +30,7 @@ import java.util.concurrent.ExecutionException;
 
 
 /**
- * Download Forecast in AsyncTask
+ * Download TabForecastWeather in AsyncTask
  */
 public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>> {
 
@@ -38,6 +38,7 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
 
     private static ForecastWeather forecastWeather;
     private static CurrentWeather currentWeather;
+    private final MainActivity.ViewPagerAdapter adapter;
 
     //Create Progress Dialog to show that something is going on
     private ProgressDialog dialog;
@@ -64,10 +65,11 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
     private Context context;
 
 
-    FetchWeatherInfo(Context context, MainActivity mainActivity) {
+    FetchWeatherInfo(Context context, MainActivity mainActivity, MainActivity.ViewPagerAdapter adapter) {
         this.context = context;
         this.mainActivity = mainActivity;
         this.dialog = new ProgressDialog(mainActivity);
+        this.adapter = adapter;
     }
 
     @Override
@@ -104,8 +106,8 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
 
 
     protected void onPostExecute(ArrayList<String> result){
-        //create variables for update current weather UI
 
+        //create variables for update current weather UI
         TextView weatherCurrentForecast;
         TextView weatherTemperatureCurrent;
         TextView weatherTemperatureMax;
@@ -114,17 +116,6 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
         ImageView weatherIconImage;
         TextView weatherCurrentLocation;
         TextView weatherForecastDate;
-
-        //init current weather UI objects
-        weatherCurrentForecast = mainActivity.findViewById(R.id.xForecastDescription);
-        weatherTemperatureCurrent = mainActivity.findViewById(R.id.xTemperatureCurrent);
-        weatherTemperatureMax = mainActivity.findViewById(R.id.xTemperatureMax);
-        weatherTemperatureMin = mainActivity.findViewById(R.id.xTemperatureMin);
-        weatherWindSpeed = mainActivity.findViewById(R.id.xWindSpeed);
-        weatherIconImage = mainActivity.findViewById(R.id.xWeatherIcon);
-        weatherCurrentLocation = mainActivity.findViewById(R.id.xCurrentLocation);
-        weatherForecastDate = mainActivity.findViewById(R.id.xForecastDate);
-
         if(result!=null) {
             if (result.size() == 2) {
                 try {
@@ -156,15 +147,19 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
+            Fragment fCurrentWeather = adapter.getItem(0);
+            View vCurrentWeather = fCurrentWeather.getView();
 
             for (int k = 0; k < 3; k++) {
                 //get forecast for tomorrow
                 List weatherList = forecastWeather.getList().get(k);
                 String date = weatherList.getDtTxt();
-                WeatherUtils.setWeatherForecastUI(mainActivity, context, weatherList, k, timeZoneId);
+                WeatherUtils.setWeatherForecastUI(vCurrentWeather, context, weatherList, k, timeZoneId);
                 Log.i(TAG, "onPostExecute: date converted " + date);
             }
+
         }
+
         //Set update UI with current weather data
         if (currentWeather != null) {
 
@@ -179,38 +174,51 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
             int minTemperature = CalcUtils.getRoundedTemperature(currentWeather.getMain().getTempMin());
             int maxTemperature = CalcUtils.getRoundedTemperature(currentWeather.getMain().getTempMax());
 
-            //set Text Views
-            weatherForecastDate.setText(df.format((forecastdate.getTime())).toString());
-            weatherCurrentLocation.setText(String.format("%s, %s", currentWeather.getName(), currentWeather.getSys().getCountry()));
-            weatherCurrentForecast.setText(currentWeather.getWeather().get(0).getDescription());
-            weatherTemperatureCurrent.setText(String.format("%s °C", currentTemperature));
-            weatherTemperatureMax.setText(String.format("Min: %s °C", maxTemperature));
-            weatherTemperatureMin.setText(String.format("Max: %s °C", minTemperature));
-            weatherWindSpeed.setText(String.format("Wind: %s m/s", currentWeather.getWind().getSpeed()));
+            int fragmentCount = adapter.getCount();
+            Log.i(TAG, "onPostExecute fragmentCount: "+ fragmentCount);
 
-            //set Image Views
-            Set keys = weatherIcons.keySet();
-            String weatherIconsGson = currentWeather.getWeather().get(0).getIcon();
-            String weatherIconToSet = "weather_na";
-            for (Object key : keys) {
-                if (key.equals(weatherIconsGson)) {
-                    weatherIconToSet = (String) weatherIcons.get(key);
-                }
+            Fragment fCurrentWeather = adapter.getItem(0);
+            View vCurrentWeather = fCurrentWeather.getView();
+
+            if (vCurrentWeather != null) {
+
+                weatherCurrentForecast = vCurrentWeather.findViewById(R.id.xForecastDescription);
+                weatherTemperatureCurrent = vCurrentWeather.findViewById(R.id.xTemperatureCurrent);
+                weatherTemperatureMax = vCurrentWeather.findViewById(R.id.xTemperatureMax);
+                weatherTemperatureMin = vCurrentWeather.findViewById(R.id.xTemperatureMin);
+                weatherWindSpeed = vCurrentWeather.findViewById(R.id.xWindSpeed);
+                weatherIconImage = vCurrentWeather.findViewById(R.id.xWeatherIcon);
+                weatherCurrentLocation = vCurrentWeather.findViewById(R.id.xCurrentLocation);
+                weatherForecastDate = vCurrentWeather.findViewById(R.id.xForecastDate);
+
+                weatherCurrentForecast.setText(currentWeather.getWeather().get(0).getDescription());
+                weatherForecastDate.setText(df.format((forecastdate.getTime())).toString());
+                weatherCurrentLocation.setText(String.format("%s, %s", currentWeather.getName(), currentWeather.getSys().getCountry()));
+
+                weatherTemperatureCurrent.setText(String.format("%s °C", currentTemperature));
+                weatherTemperatureMax.setText(String.format("Min: %s °C", maxTemperature));
+                weatherTemperatureMin.setText(String.format("Max: %s °C", minTemperature));
+                weatherWindSpeed.setText(String.format("Wind: %s m/s", currentWeather.getWind().getSpeed()));
+
+                //set Image Views
+
+                int weatherIconsGson = currentWeather.getWeather().get(0).getId();
+                int weatherIconID = WeatherUtils.getWeatherIcon(weatherIconsGson);
+
+                String PACKAGE_NAME = context.getPackageName();
+                int imgID = context.getResources().getIdentifier(String.valueOf(weatherIconID),null,null);
+                Log.i(TAG, "imgID: " + imgID);
+
+                weatherIconImage.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
+
             }
-
-            String PACKAGE_NAME = context.getPackageName();
-            int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
-            Log.i(TAG, "imgID: " + imgID);
-
-            weatherIconImage.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
-
-
         }
 
         //close progress dialog
         if(dialog.isShowing()){
             dialog.dismiss();
         }
+
     }
 
     private ForecastWeather parseForecastWeatherJSONgson(String jsonString)

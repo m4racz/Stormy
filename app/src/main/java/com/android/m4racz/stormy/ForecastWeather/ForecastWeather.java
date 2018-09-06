@@ -61,5 +61,4 @@ public class ForecastWeather {
     public void setMessage(Double message) {
         this.message = message;
     }
-
 }

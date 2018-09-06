@@ -64,10 +64,6 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-hdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_forecast_layout.xml.flat",
-        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\forecast_layout.xml"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-xhdpi-v4\\abc_ic_star_black_48dp.png"
     },
@@ -744,6 +740,10 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-hdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
         "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
     },
@@ -816,10 +816,6 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main_constraint.xml.flat",
-        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\activity_main_constraint.xml"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_light.xml.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
@@ -842,6 +838,10 @@
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_layout_snackbar_include.xml.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.1.aar\\acbf929f189b79a8b58e122abe78f359\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tabforecast.png.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\drawable\\tabforecast.png"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -1416,6 +1416,14 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-xhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_tab_forecast_weather.xml.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\tab_forecast_weather.xml"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_tab_map_weather.xml.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\tab_map_weather.xml"
+    },
+    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_simple.xml.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\layout\\abc_screen_simple.xml"
     },
@@ -1872,8 +1880,16 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_tab_current_weather.xml.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\layout\\tab_current_weather.xml"
+    },
+    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_weather_atmosphere.png.flat",
         "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\drawable\\weather_atmosphere.png"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tabmap.png.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\drawable\\tabmap.png"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
@@ -1890,6 +1906,10 @@
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_light.9.png.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tabcurrent.png.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\drawable\\tabcurrent.png"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",

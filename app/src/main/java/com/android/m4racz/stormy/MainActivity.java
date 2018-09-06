@@ -10,9 +10,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -26,9 +34,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.m4racz.stormy.Data.WeatherDbHelper;
+import com.android.m4racz.stormy.ForecastWeather.ForecastWeather;
 import com.android.m4racz.stormy.Utils.NetworkUtilsOpenWeather;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,17 +51,23 @@ public class MainActivity extends AppCompatActivity {
     public EditText mInputCity;
     public ImageView mSearchWeather;
     public ImageView mLocationWeather;
-
     public LocationManager locationManager;
     public LocationListener locationListener;
     public Location location;
     public Context context;
+    TabLayout tabLayout;
+    public ViewPager viewPager;
+    public ViewPagerAdapter adapter;
+    public int []tabIcons = {
+            R.drawable.tabcurrent,
+            R.drawable.tabforecast,
+            R.drawable.tabmap
+    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,9 +103,23 @@ public class MainActivity extends AppCompatActivity {
 
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_constraint);
+        setContentView(R.layout.activity_main);
+        //INIT DBS
+        WeatherDbHelper db = new WeatherDbHelper(this);
+        //INIT TABS
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        //INIT UI
+        // Add Fragments to adapter one by one
+        adapter.addFragment(new TabCurrentWeather(), "Current");
+        adapter.addFragment(new TabForecastWeather(), "Forecast");
+        adapter.addFragment(new TabMapWeather(), "Map");
+        viewPager.setAdapter(adapter);
+
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
+        //INIT UI PARTS
         mInputCity = this.findViewById(R.id.xInputSearch);
         mSearchWeather = this.findViewById(R.id.xSearchImage);
         mLocationWeather = this.findViewById(R.id.xLocationImage);
@@ -171,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Create on click listener for Search by string to Get Forecast
+        //Create on click listener for Search by string to Get TabForecastWeather
         mSearchWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,13 +213,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Create on click listener for search by Location to Get Forecast
+        //Create on click listener for search by Location to Get TabForecastWeather
         mLocationWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 findWeather("location"); //search via user location
             }
         });
+
         //SEARCH FOR CURRENT LOCATION
         findWeather("location");
     }
@@ -213,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             //Example URL http://api.openweathermap.org/data/2.5/weather?q=london&appid=89fd3664a5ad45e46488b6af57b2a5cd
-            FetchWeatherInfo fetchWeatherInfo = new FetchWeatherInfo(context, this);
+            FetchWeatherInfo fetchWeatherInfo = new FetchWeatherInfo(context, this, adapter);
             //get forecast via AsyncTask
             fetchWeatherInfo.execute(weatherURL[0].toString(), weatherURL[1].toString());
             Log.i(TAG, "findWeather fetchWeatherInfo.forecastWeather: " + fetchWeatherInfo);
@@ -222,6 +256,44 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Error during the Search" + e.toString(), Toast.LENGTH_SHORT).show();
 
+        }
+    }
+
+    //setup icons for tabs
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
+    // Adapter for the viewpager using FragmentPagerAdapter
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            //in order to hide tab name we return null
+            return null;
         }
     }
 }
