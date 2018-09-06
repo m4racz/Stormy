@@ -130,18 +130,15 @@ public class WeatherUtils {
             weatherForecastDay1.setText(DisplayForecastDay);
             weatherForecastTempDay1.setText(String.format("%s °C", currentTemperature));
 
-            //set Image Views5148
-            Set keys = FetchWeatherInfo.weatherIcons.keySet();
-            String weatherIconToSet = "weather_na";
-            for (Object key : keys) {
-                if (key.equals(icon)) {
-                    weatherIconToSet = (String) FetchWeatherInfo.weatherIcons.get(key);
-                }
-            }
+            //set Image View
+            int weatherIconsGson = weatherList.getWeather().get(0).getId();
+            int weatherIconID = WeatherUtils.getWeatherIcon(weatherIconsGson);
+
             String PACKAGE_NAME = context.getPackageName();
-            int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
+            int imgID = context.getResources().getIdentifier(String.valueOf(weatherIconID),null,null);
             Log.i(TAG, "imgID: " + imgID);
-            weatherForecastIconDay1.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
+
+            weatherForecastIconDay1.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
 
         }
 
@@ -150,18 +147,15 @@ public class WeatherUtils {
             weatherForecastDay2.setText(DisplayForecastDay);
             weatherForecastTempDay2.setText(String.format("%s °C", currentTemperature));
 
-            //set Image Views
-            Set keys = FetchWeatherInfo.weatherIcons.keySet();
-            String weatherIconToSet = "weather_na";
-            for (Object key : keys) {
-                if (key.equals(icon)) {
-                    weatherIconToSet = (String) FetchWeatherInfo.weatherIcons.get(key);
-                }
-            }
+            //set Image View
+            int weatherIconsGson = weatherList.getWeather().get(0).getId();
+            int weatherIconID = WeatherUtils.getWeatherIcon(weatherIconsGson);
+
             String PACKAGE_NAME = context.getPackageName();
-            int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
+            int imgID = context.getResources().getIdentifier(String.valueOf(weatherIconID),null,null);
             Log.i(TAG, "imgID: " + imgID);
-            weatherForecastIconDay2.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
+
+            weatherForecastIconDay2.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
         }
 
         if(forecastDay.equals(2)){
@@ -169,18 +163,15 @@ public class WeatherUtils {
             weatherForecastDay3.setText(DisplayForecastDay);
             weatherForecastTempDay3.setText(String.format("%s °C", currentTemperature));
 
-            //set Image Views
-            Set keys = FetchWeatherInfo.weatherIcons.keySet();
-            String weatherIconToSet = "weather_na";
-            for (Object key : keys) {
-                if (key.equals(icon)) {
-                    weatherIconToSet = (String) FetchWeatherInfo.weatherIcons.get(key);
-                }
-            }
+            //set Image View
+            int weatherIconsGson = weatherList.getWeather().get(0).getId();
+            int weatherIconID = WeatherUtils.getWeatherIcon(weatherIconsGson);
+
             String PACKAGE_NAME = context.getPackageName();
-            int imgID = context.getResources().getIdentifier(PACKAGE_NAME+"drawable/"+weatherIconToSet,null,null);
+            int imgID = context.getResources().getIdentifier(String.valueOf(weatherIconID),null,null);
             Log.i(TAG, "imgID: " + imgID);
-            weatherForecastIconDay3.setImageResource(context.getResources().getIdentifier(weatherIconToSet, "drawable", PACKAGE_NAME));
+
+            weatherForecastIconDay3.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
 
         }
 

@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.android.m4racz.stormy.MainActivity;
+import com.google.common.net.UrlEscapers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -99,15 +100,11 @@ public class NetworkUtilsOpenWeather {
     private static Uri buildUrlWithLocationQuery(String cityToSearch) {
         String encodedCity = "";
         //encode city to UTF-8
-        try {
-            encodedCity = URLEncoder.encode(cityToSearch, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        //encodedCity = UrlEscapers.urlFragmentEscaper().escape(cityToSearch);
 
         Uri builtURI = Uri.parse(DYNAMIC_WEATHER_URL)
                 .buildUpon()
-                .appendQueryParameter(QUERY_PARAM, encodedCity)
+                .appendQueryParameter(QUERY_PARAM, cityToSearch)
                 .appendQueryParameter(UNITS_PARAM, units)
                 .appendQueryParameter(APP_ID,API_KEY)
                 .build();
@@ -118,15 +115,11 @@ public class NetworkUtilsOpenWeather {
     private static Uri buildUrlWithLocationQueryForecast(String cityToSearch) {
         String encodedCity = "";
         //encode city to UTF-8
-        try {
-            encodedCity = URLEncoder.encode(cityToSearch, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        //encodedCity = UrlEscapers.urlFragmentEscaper().escape(cityToSearch);
 
         Uri builtURI = Uri.parse(DYNAMIC_FORECAST_URL)
                 .buildUpon()
-                .appendQueryParameter(QUERY_PARAM, encodedCity)
+                .appendQueryParameter(QUERY_PARAM, cityToSearch)
                 .appendQueryParameter(UNITS_PARAM, units)
                 .appendQueryParameter(APP_ID,API_KEY)
                 .build();

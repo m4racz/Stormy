@@ -64,12 +64,12 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-hdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_black_48dp.png.flat",
-        "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-xhdpi-v4\\abc_ic_star_black_48dp.png"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_black_48dp.png.flat",
+        "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-xhdpi-v4\\abc_ic_star_black_48dp.png"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -132,12 +132,12 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_expanded_menu_layout.xml.flat",
-        "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\layout\\abc_expanded_menu_layout.xml"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_disable_only_material_light.xml.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_expanded_menu_layout.xml.flat",
+        "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
@@ -148,12 +148,12 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.1.aar\\acbf929f189b79a8b58e122abe78f359\\res\\drawable-hdpi-v4\\design_ic_visibility_off.png"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
-        "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-ldrtl-mdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
+        "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\drawable-ldrtl-mdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
@@ -396,12 +396,12 @@
         "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.1.aar\\acbf929f189b79a8b58e122abe78f359\\res\\anim\\design_snackbar_out.xml"
     },
     {
-        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
