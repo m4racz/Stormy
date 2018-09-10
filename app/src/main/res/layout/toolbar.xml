@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorToolbar"
+    android:background="@color/primaryColor"
     android:padding="0dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
@@ -14,11 +14,9 @@
         android:id="@+id/xInputSearch"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:backgroundTint="@color/colorWhite"
+        android:backgroundTint="@color/colorText"
         android:hint="@string/enter_city_name"
         android:maxLines="1"
-        android:textAlignment="center"
         tools:targetApi="lollipop" />
 
     <ImageView

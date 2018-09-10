@@ -40,7 +40,7 @@ public class Settings extends AppCompatActivity {
         ArrayAdapter<CharSequence> spinnerTemperatureAdapter = ArrayAdapter.createFromResource(this, R.array.temperature_units,
                 R.layout.custom_spinner);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            spinnerTemperature.setBackgroundTintList(getColorStateList(R.color.colorWhite));
+            spinnerTemperature.setBackgroundTintList(getColorStateList(R.color.colorText));
         }
         spinnerTemperatureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTemperature.setAdapter(spinnerTemperatureAdapter);

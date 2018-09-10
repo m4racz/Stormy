@@ -162,8 +162,6 @@ public class MainActivity extends AppCompatActivity {
         mSearchWeather = this.findViewById(R.id.xSearchImage);
         mLocationWeather = this.findViewById(R.id.xLocationImage);
 
-
-
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
 
@@ -209,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar));
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.primaryDarkColor));
 
         //Create onFocusChange listener to hide keyboard and show dropdown
         mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {

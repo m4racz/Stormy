@@ -19,7 +19,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="45sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="136dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -77,7 +77,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +107,7 @@
         android:layout_marginStart="12dp"
         android:paddingTop="10dp"
         android:text="Location"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/xWeatherIcon"
@@ -138,7 +138,7 @@
                 android:layout_weight="1"
 
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
             <!-- android:text="Day1" -->
 
@@ -150,7 +150,7 @@
                 android:layout_weight="1"
 
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
             <!--android:text="Day2"-->
             <TextView
@@ -161,7 +161,7 @@
                 android:layout_weight="1"
 
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
             <!--android:text="Day3"-->
         </TableRow>
@@ -177,7 +177,7 @@
                 android:layout_weight="1"
 
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
             <!--android:text="tempD1" -->
             <TextView
@@ -187,7 +187,7 @@
                 android:layout_weight="1"
 
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
             <!--android:text="tempD2"-->
             <TextView
@@ -196,7 +196,7 @@
                 android:layout_column="3"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorText"
                 android:textSize="12sp" />
             <!--android:text="tempD3"-->
         </TableRow>
@@ -244,7 +244,7 @@
         android:layout_marginLeft="280dp"
         android:layout_marginStart="280dp"
 
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -18,10 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        android:background="@color/colorToolbar"
+        android:background="@color/primaryLightColor"
         android:minHeight="?attr/actionBarSize"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorWhite"
+        app:tabIndicatorColor="@color/colorText"
         app:tabTextColor="#FFF"
         app:tabSelectedTextColor="@color/colorAccent"
         />
