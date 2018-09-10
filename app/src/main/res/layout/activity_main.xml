@@ -21,9 +21,9 @@
         android:background="@color/primaryLightColor"
         android:minHeight="?attr/actionBarSize"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorText"
+        app:tabIndicatorColor="@color/primaryDarkColor"
         app:tabTextColor="#FFF"
-        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabSelectedTextColor="@color/primaryLightColor"
         />
 
 

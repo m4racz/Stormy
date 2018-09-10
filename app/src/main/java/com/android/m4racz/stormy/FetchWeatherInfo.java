@@ -160,7 +160,7 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 //recyclerView.addItemDecoration(new DividerItemDecoration(context,LinearLayoutManager.VERTICAL));
-                recyclerView.addItemDecoration(new SeparatorDecoration(Color.parseColor("#5cffffff"),1,32,32));
+                recyclerView.addItemDecoration(new SeparatorDecoration(Color.parseColor("#ae52d4"),1,16,16));
                 recyclerView.setAdapter(forecastAdapter);
             }
         }
