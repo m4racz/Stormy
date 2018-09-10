@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="8dp">
 
     <TextView
-        android:id="@+id/xForecastTempItem"
+        android:id="@+id/xForecastItemDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:text="forecast Item"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentRight="true"
+        android:text="date + time"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/xForecastItemDayofWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/xForecastItemDateTime"
+        android:layout_alignStart="@+id/xForecastItemDateTime"
+        android:layout_alignTop="@+id/xForecastItemTemperature"
+        android:text="dayOfWeek"
+        android:textColor="@color/colorWhite" />
+
+    <ImageView
+        android:id="@+id/xForecastItemIcon"
+        android:layout_width="43dp"
+        android:layout_height="42dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/xForecastItemDescription"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="74dp"
+        android:text="Forecast Description"
+        android:textColor="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="74dp" />
+
+    <TextView
+        android:id="@+id/xForecastItemTemperature"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/xForecastItemIcon"
+        android:layout_alignStart="@+id/xForecastItemDescription"
+        android:text="forecast Temperature"
+        android:textColor="@color/colorWhite"
+        android:layout_alignLeft="@+id/xForecastItemDescription" />
+
+
+
+</RelativeLayout>

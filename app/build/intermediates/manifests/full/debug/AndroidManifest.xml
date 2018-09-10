@@ -29,6 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.android.m4racz.stormy.Settings.Settings" />
+        <activity
+            android:name="com.android.m4racz.stormy.About.About"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

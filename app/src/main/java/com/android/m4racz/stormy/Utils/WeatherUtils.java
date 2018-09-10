@@ -24,6 +24,35 @@ public class WeatherUtils {
 
     private static String TAG = WeatherUtils.class.getSimpleName();
 
+    public static String getWindDirection(Double degrees) {
+        String windDirection = "N/A";
+
+        if (degrees == null) {
+            return windDirection;
+        }
+
+        if (degrees >= 337.5 || degrees < 22.5) {
+            windDirection = "N";
+        } else if (degrees >= 22.5 && degrees < 67.5) {
+            windDirection = "NE";
+        } else if (degrees >= 67.5 && degrees < 112.5) {
+            windDirection = "E";
+        } else if (degrees >= 112.5 && degrees < 157.5) {
+            windDirection = "SE";
+        } else if (degrees >= 157.5 && degrees < 202.5) {
+            windDirection = "S";
+        } else if (degrees >= 202.5 && degrees < 247.5) {
+            windDirection = "SW";
+        } else if (degrees >= 247.5 && degrees < 292.5) {
+            windDirection = "W";
+        } else if (degrees >= 292.5 && degrees < 337.5) {
+            windDirection = "NW";
+        }
+
+        return windDirection;
+    }
+
+
     public static int getWeatherIcon (int weatherId){
         int iconId;
 
@@ -66,9 +95,8 @@ public class WeatherUtils {
     }
 
 
-    public static Calendar convertCurrentWeatherToCorrectTimeZone (CurrentWeather currentWeather, String timeZoneId){
+    public static Calendar convertCurrentWeatherToCorrectTimeZone (int dateInMillies, String timeZoneId){
         //convert current weather to currect timezone
-        Integer dateInMillies = currentWeather.getDt();
         Log.i(TAG, "convertCurrentWeatherToCorrectTimeZone: dateInMillies: " + dateInMillies);
 
         Calendar forecastDate = CalcUtils.getDateFromMillies(dateInMillies, timeZoneId);
@@ -121,7 +149,7 @@ public class WeatherUtils {
         int currentTemperature = CalcUtils.getRoundedTemperature(weatherList.getMain().getTemp());
 
         Calendar day = CalcUtils.getDateFromString(weatherList.getDtTxt(),"yyyy-MM-dd HH:mm:ss", timeZoneId);
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
         String DisplayForecastDay =  df.format((day.getTime())).toString();
 

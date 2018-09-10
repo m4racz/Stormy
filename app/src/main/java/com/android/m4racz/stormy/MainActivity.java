@@ -2,6 +2,7 @@ package com.android.m4racz.stormy;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,8 +36,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.m4racz.stormy.About.About;
 import com.android.m4racz.stormy.Data.WeatherDbHelper;
 import com.android.m4racz.stormy.ForecastWeather.ForecastWeather;
+import com.android.m4racz.stormy.Settings.Settings;
 import com.android.m4racz.stormy.Utils.NetworkUtilsOpenWeather;
 
 import java.net.URL;
@@ -77,6 +81,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.settings:
+                Log.i(TAG, "onOptionsItemSelected: settings clicked");
+                Intent settingsActivity = new Intent(getApplicationContext(), Settings.class);
+                this.startActivity(settingsActivity);
+                return true;
+            case R.id.about:
+                Log.i(TAG, "onOptionsItemSelected: about clicked");
+                Intent aboutActivity = new Intent(getApplicationContext(), About.class);
+                this.startActivity(aboutActivity);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -104,8 +127,10 @@ public class MainActivity extends AppCompatActivity {
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //INIT DBS
         WeatherDbHelper db = new WeatherDbHelper(this);
+
         //INIT TABS
         viewPager = (ViewPager) findViewById(R.id.pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -113,12 +138,15 @@ public class MainActivity extends AppCompatActivity {
         // Add Fragments to adapter one by one
         adapter.addFragment(new TabCurrentWeather(), "Current");
         adapter.addFragment(new TabForecastWeather(), "Forecast");
-        adapter.addFragment(new TabMapWeather(), "Map");
+        //adapter.addFragment(new TabMapWeather(), "Map");
         viewPager.setAdapter(adapter);
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+
+        //FORCE KEYBOARD OVERLAY to prevent screen adjust during entering search
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         //INIT UI PARTS
         mInputCity = this.findViewById(R.id.xInputSearch);
         mSearchWeather = this.findViewById(R.id.xSearchImage);
@@ -213,6 +241,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //create on loose focus listener to hide keyboard
+        mSearchWeather.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus){
+                    hideKeyBoard();
+                }
+            }
+        });
+
         //Create on click listener for search by Location to Get TabForecastWeather
         mLocationWeather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        //tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
 
     // Adapter for the viewpager using FragmentPagerAdapter

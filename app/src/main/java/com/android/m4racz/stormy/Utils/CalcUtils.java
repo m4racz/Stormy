@@ -1,8 +1,5 @@
 package com.android.m4racz.stormy.Utils;
 
-import android.util.Log;
-
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,7 +35,7 @@ public final class CalcUtils {
     }
 
     public static Calendar getDateFromMillies(Integer dateInMillies, String timeZoneId) {
-        Date date = null;
+        Date date;
 
         date = new Date((long)dateInMillies*1000);
 
@@ -50,11 +47,10 @@ public final class CalcUtils {
         return nowTimeZoned;
     }
 
-    public static String getDayOfWeek(Date day) {
+    public static String getDayOfWeek(Calendar date) {
         String dayOfWeek = "";
-        Calendar forecastDay = Calendar.getInstance();
-        forecastDay.setTime(day);
-        int dayNumber = forecastDay.get(Calendar.DAY_OF_WEEK);
+        Calendar.getInstance();
+        int dayNumber = date.get(Calendar.DAY_OF_WEEK);
         switch (dayNumber) {
             case 1:
                 dayOfWeek = "Sunday";

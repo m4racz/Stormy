@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
-INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
-INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
-INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\acbf929f189b79a8b58e122abe78f359\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\e5d8d650931639fad362deb085dc03cb\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\e4b1cfabf94f2977893879476982c387\AndroidManifest.xml:2:1-11:12
@@ -21,20 +21,20 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\janmarek1\.gra
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f579c431610369e9c82ac9865f4e37be\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\c23953492c2993fb4568b14c4727fb6d\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\090e05c65f7e537f94072bdcd419d3d1\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
-INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
-INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
 	package
 		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:3:5-40
 		INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
 		INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
-		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
 		INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
-		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-25:12
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:1-31:12
 		INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:2:11-69
@@ -47,7 +47,7 @@ ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:8:5
 	android:name
 		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:8:22-76
 application
-ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:10:5-23:19
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:10:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\e4b1cfabf94f2977893879476982c387\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\janmarek1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\e4b1cfabf94f2977893879476982c387\AndroidManifest.xml:9:5-20
 	android:supportsRtl
@@ -63,19 +63,31 @@ MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\ja
 	android:theme
 		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:16:9-40
 activity#com.android.m4racz.stormy.MainActivity
-ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:17:9-22:20
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:17:9-23:20
 	android:name
 		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:17:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:18:13-21:29
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:18:13-22:29
 action#android.intent.action.MAIN
 ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:19:17-69
 	android:name
 		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:20:17-77
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:20:27-74
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:21:27-74
+activity#com.android.m4racz.stormy.Settings.Settings
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:24:9-55
+	android:name
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:24:19-52
+activity#com.android.m4racz.stormy.About.About
+ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:25:9-28:56
+	android:label
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:27:13-57
+	android:theme
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:28:13-44
+	android:name
+		ADDED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml:26:13-40
 uses-sdk
 INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\__HOME\Andoid_Projects\Stormy\app\src\main\AndroidManifest.xml
