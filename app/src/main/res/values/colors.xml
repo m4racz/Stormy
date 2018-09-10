@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorStatusBar">#FF23729A</color>
+    <color name="colorStatusBar">#00838f</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="colorToolbar">#5cffffff</color>
+    <color name="colorToolbar">#64dfdfdf</color>
 </resources>

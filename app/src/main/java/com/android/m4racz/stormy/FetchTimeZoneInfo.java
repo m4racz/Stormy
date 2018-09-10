@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 /**
- * Download TabForecastWeather in AsyncTask
+ * Download Forecast in AsyncTask
  */
 public class FetchTimeZoneInfo extends AsyncTask<String, Void, String> {
 
@@ -41,8 +41,7 @@ public class FetchTimeZoneInfo extends AsyncTask<String, Void, String> {
         try {
             String timeZone = NetworkUtils.getDataFromWeb(urls[0]);
             com.android.m4racz.stormy.TimeZone.TimeZone timeZoneObject = parseCurrentTimeZoneJSONgson(timeZone);
-            //if time zone is not fetched we will return UTC time zone
-            if(timeZoneObject.getTimeZoneId() == null){
+            if (timeZoneObject.getTimeZoneId() == null){
                 return "UTC";
             }
             return timeZoneObject.getTimeZoneId();

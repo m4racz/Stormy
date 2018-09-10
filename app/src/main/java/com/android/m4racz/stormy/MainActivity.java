@@ -31,6 +31,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.tabforecast,
             R.drawable.tabmap
     };
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -128,6 +131,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //SET TOOLBAR MENU
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); //disable title in toolbar
+
         //INIT DBS
         WeatherDbHelper db = new WeatherDbHelper(this);
 
@@ -147,15 +155,14 @@ public class MainActivity extends AppCompatActivity {
 
         //FORCE KEYBOARD OVERLAY to prevent screen adjust during entering search
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        //INIT UI PARTS
+
         mInputCity = this.findViewById(R.id.xInputSearch);
+
+        //INIT UI PARTS
         mSearchWeather = this.findViewById(R.id.xSearchImage);
         mLocationWeather = this.findViewById(R.id.xLocationImage);
 
-        //SET TOOLBAR MENU
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); //disable title in toolbar
+
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
@@ -197,16 +204,14 @@ public class MainActivity extends AppCompatActivity {
 
         //change color of status bar
         Window window = this.getWindow();
-
         // clear FLAG_TRANSLUCENT_STATUS flag:
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar));
-        //Create onFocusChange listener to hide keyboard
+
+        //Create onFocusChange listener to hide keyboard and show dropdown
         mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {

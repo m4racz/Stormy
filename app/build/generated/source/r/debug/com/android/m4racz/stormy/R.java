@@ -2037,7 +2037,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>
@@ -3640,25 +3640,26 @@ public final class R {
     public static final int notification_tile_bg=0x7f080072;
     public static final int notify_panel_notification_icon_bg=0x7f080073;
     public static final int search_icon=0x7f080074;
-    public static final int tabcurrent=0x7f080075;
-    public static final int tabforecast=0x7f080076;
-    public static final int tabmap=0x7f080077;
-    public static final int tooltip_frame_dark=0x7f080078;
-    public static final int tooltip_frame_light=0x7f080079;
-    public static final int weather_atmosphere=0x7f08007a;
-    public static final int weather_broken_clouds=0x7f08007b;
-    public static final int weather_broken_clouds_night=0x7f08007c;
-    public static final int weather_drizzle=0x7f08007d;
-    public static final int weather_few_clouds=0x7f08007e;
-    public static final int weather_few_clouds_night=0x7f08007f;
-    public static final int weather_na=0x7f080080;
-    public static final int weather_rain=0x7f080081;
-    public static final int weather_scattered_clouds=0x7f080082;
-    public static final int weather_scattered_clouds_night=0x7f080083;
-    public static final int weather_snow=0x7f080084;
-    public static final int weather_sunny=0x7f080085;
-    public static final int weather_sunny_night=0x7f080086;
-    public static final int weather_thunderstorm=0x7f080087;
+    public static final int star=0x7f080075;
+    public static final int tabcurrent=0x7f080076;
+    public static final int tabforecast=0x7f080077;
+    public static final int tabmap=0x7f080078;
+    public static final int tooltip_frame_dark=0x7f080079;
+    public static final int tooltip_frame_light=0x7f08007a;
+    public static final int weather_atmosphere=0x7f08007b;
+    public static final int weather_broken_clouds=0x7f08007c;
+    public static final int weather_broken_clouds_night=0x7f08007d;
+    public static final int weather_drizzle=0x7f08007e;
+    public static final int weather_few_clouds=0x7f08007f;
+    public static final int weather_few_clouds_night=0x7f080080;
+    public static final int weather_na=0x7f080081;
+    public static final int weather_rain=0x7f080082;
+    public static final int weather_scattered_clouds=0x7f080083;
+    public static final int weather_scattered_clouds_night=0x7f080084;
+    public static final int weather_snow=0x7f080085;
+    public static final int weather_sunny=0x7f080086;
+    public static final int weather_sunny_night=0x7f080087;
+    public static final int weather_thunderstorm=0x7f080088;
   }
   public static final class id {
     public static final int ALT=0x7f090000;
@@ -9134,7 +9135,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>

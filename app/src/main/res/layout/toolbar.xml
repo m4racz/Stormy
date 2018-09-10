@@ -4,21 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
     android:background="@color/colorToolbar"
+    android:padding="0dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
-    <ImageView
-        android:id="@+id/xLocationImage"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/location_search" />
 
     <EditText
         android:id="@+id/xInputSearch"
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:backgroundTint="@color/colorWhite"
         android:hint="@string/enter_city_name"
         android:maxLines="1"
@@ -30,5 +26,20 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/search_icon" />
+
+    <ImageButton
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/xLocationImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/location_search" />
 
 </android.support.v7.widget.Toolbar>
