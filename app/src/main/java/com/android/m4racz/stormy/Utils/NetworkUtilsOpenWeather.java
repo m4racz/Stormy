@@ -8,12 +8,9 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.android.m4racz.stormy.MainActivity;
-import com.google.common.net.UrlEscapers;
 
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class NetworkUtilsOpenWeather {
     private static final String TAG = NetworkUtilsOpenWeather.class.getSimpleName();
@@ -80,7 +77,8 @@ public class NetworkUtilsOpenWeather {
             return new URL[]{url,urlForecast};
         }
         else if (searchType.equals("input")) {
-            String cityToSearch = mainActivity.mInputCity.getText().toString();
+            // TODO: 11.09.2018 fix me due change to spinner
+            String cityToSearch = "Prague";
             Uri uri = buildUrlWithLocationQuery(cityToSearch);
             Uri uriForecast = buildUrlWithLocationQueryForecast(cityToSearch);
             try {

@@ -3,6 +3,7 @@ package com.android.m4racz.stormy;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -18,12 +19,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,21 +30,21 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.m4racz.stormy.About.About;
 import com.android.m4racz.stormy.Data.WeatherDbHelper;
-import com.android.m4racz.stormy.ForecastWeather.ForecastWeather;
+import com.android.m4racz.stormy.Settings.SavedLocations;
 import com.android.m4racz.stormy.Settings.Settings;
 import com.android.m4racz.stormy.Utils.NetworkUtilsOpenWeather;
+import com.google.gson.Gson;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public EditText mInputCity;
+    public Spinner mInputLocation;
     public ImageView mSearchWeather;
     public ImageView mLocationWeather;
     public LocationManager locationManager;
@@ -156,9 +154,8 @@ public class MainActivity extends AppCompatActivity {
         //FORCE KEYBOARD OVERLAY to prevent screen adjust during entering search
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        mInputCity = this.findViewById(R.id.xInputSearch);
-
         //INIT UI PARTS
+        mInputLocation = this.findViewById(R.id.xSpinnerSearch);
         mSearchWeather = this.findViewById(R.id.xSearchImage);
         mLocationWeather = this.findViewById(R.id.xLocationImage);
 
@@ -209,8 +206,9 @@ public class MainActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.primaryDarkColor));
 
+        /*
         //Create onFocusChange listener to hide keyboard and show dropdown
-        mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mInputLocation.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus){
@@ -219,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mInputCity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mInputLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 boolean handled = false;
@@ -234,13 +232,15 @@ public class MainActivity extends AppCompatActivity {
                 return handled;
             }
         });
+        */
 
         //Create on click listener for Search by string to Get TabForecastWeather
         mSearchWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideKeyBoard();
-                findWeather("input"); //search via input string
+
+
+                //findWeather("input"); //search via input string
             }
         });
 
@@ -264,15 +264,54 @@ public class MainActivity extends AppCompatActivity {
 
         //SEARCH FOR CURRENT LOCATION
         findWeather("location");
+
+        //INSERT LOCATION TO PREFERENCES
+        String savedLocationsPrefsTag = "com.android.m4racz.stormy.SavedLocations";
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(savedLocationsPrefsTag, MODE_PRIVATE);
+        Gson gson = new Gson();
+        com.android.m4racz.stormy.Settings.Location locationToSave = new com.android.m4racz.stormy.Settings.Location();
+        locationToSave.setCity("Prague");
+        locationToSave.setCountry("CZ");
+        locationToSave.setLat(15);
+        locationToSave.setLon(50);
+
+        SavedLocations savedLocations = new SavedLocations();
+        savedLocations.setLocations(Collections.singletonList(locationToSave));
+
+        String json = gson.toJson(savedLocations);
+        Log.i(TAG, "onCreate: " + json);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(savedLocationsPrefsTag,json);
+        editor.apply();
+        editor.commit();
+
+        String savedLocation = sharedPreferences.getString(savedLocationsPrefsTag,"");
+        Log.i(TAG, "onCreate: "+ savedLocation);
+
+        //GET LOCATION FROM PREFERENCES
+        String getLocationFromPreferences = sharedPreferences.getString(savedLocationsPrefsTag, null);
+        Log.i(TAG, "onCreate: getLocationFromPreferences " + getLocationFromPreferences);
+        SavedLocations getSavedLocation = gson.fromJson(getLocationFromPreferences, SavedLocations.class);
+
+        String city = getSavedLocation.getLocations().get(0).getCity();
+        Log.i(TAG, "onCreate: city " + city);
+        //Setup the location spinner
+        ArrayAdapter<com.android.m4racz.stormy.Settings.Location> mAdapterForSearch =
+                new ArrayAdapter<>(context, R.layout.custom_spinner, getSavedLocation.getLocations());
+        mAdapterForSearch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mInputLocation.setAdapter(mAdapterForSearch);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mInputLocation.setBackgroundTintList(getColorStateList(R.color.colorWhite));
+        }
     }
-   /*
+    /*
      *
      * Hide Keyboard when invoked
      */
     private void hideKeyBoard() {
         InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
-            inputMethodManager.hideSoftInputFromWindow(mInputCity.getWindowToken(), 0);
+            inputMethodManager.hideSoftInputFromWindow(mInputLocation.getWindowToken(), 0);
         }
     }
 

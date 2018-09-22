@@ -220,11 +220,6 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 Log.i(TAG, "imgID: " + imgID);
 
                 weatherIconImage.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
-
-                //reset text field location to empty
-                weatherInput = mainActivity.findViewById(R.id.xInputSearch);
-                weatherInput.setText("");
-
             }
         }
 

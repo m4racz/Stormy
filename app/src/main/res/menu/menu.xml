@@ -6,6 +6,12 @@
         android:title="Settings"
         app:showAsAction="never" />
 
+
+    <item
+        android:id="@+id/locations"
+        android:title="Edit Locations"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/about"
         android:title="About"

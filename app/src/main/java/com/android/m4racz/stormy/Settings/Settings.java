@@ -5,59 +5,61 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import com.android.m4racz.stormy.R;
 
 public class Settings extends AppCompatActivity {
-    public Spinner spinnerTemperature;
+
+    public Switch mSwitchTemperature_units;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        //change color of status bar
-        Window window = this.getWindow();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar));
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Settings");
 
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.android.m4racz.stormy", MODE_PRIVATE);
-        int temperatureSettings = sharedPreferences.getInt("temperature_settings", 99);
+        boolean temperatureSettings = sharedPreferences.getBoolean("temperature_settings", true);
 
+        mSwitchTemperature_units = this.findViewById(R.id.settings_temparature_units);
 
-        spinnerTemperature = this.findViewById(R.id.settings_temperature_spinner);
-        ArrayAdapter<CharSequence> spinnerTemperatureAdapter = ArrayAdapter.createFromResource(this, R.array.temperature_units,
-                R.layout.custom_spinner);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            spinnerTemperature.setBackgroundTintList(getColorStateList(R.color.colorText));
+        if(temperatureSettings == true){
+            mSwitchTemperature_units.setChecked(true);
         }
-        spinnerTemperatureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTemperature.setAdapter(spinnerTemperatureAdapter);
+        else{
+            mSwitchTemperature_units.setChecked(false);
+        }
 
-        if(temperatureSettings != 99) spinnerTemperature.setSelection(temperatureSettings);
-
-        spinnerTemperature.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSwitchTemperature_units.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sharedPreferences.edit().putInt("temperature_settings", position).apply();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    sharedPreferences.edit().putBoolean("temperature_settings", true).apply();
+                }
+                else{
+                    sharedPreferences.edit().putBoolean("temperature_settings", false).apply();
+                }
             }
         });
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
