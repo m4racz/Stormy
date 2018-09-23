@@ -85,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
-            case R.id.settings:
+            case R.id.main_menu_settings:
                 Log.i(TAG, "onOptionsItemSelected: settings clicked");
                 Intent settingsActivity = new Intent(getApplicationContext(), Settings.class);
                 this.startActivity(settingsActivity);
                 return true;
-            case R.id.about:
+            case R.id.main_menu_about:
                 Log.i(TAG, "onOptionsItemSelected: about clicked");
                 Intent aboutActivity = new Intent(getApplicationContext(), About.class);
                 this.startActivity(aboutActivity);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //SET TOOLBAR MENU
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); //disable title in toolbar
 
@@ -234,33 +234,6 @@ public class MainActivity extends AppCompatActivity {
         });
         */
 
-        //Create on click listener for Search by string to Get TabForecastWeather
-        mSearchWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                //findWeather("input"); //search via input string
-            }
-        });
-
-        //create on loose focus listener to hide keyboard
-        mSearchWeather.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){
-                    hideKeyBoard();
-                }
-            }
-        });
-
-        //Create on click listener for search by Location to Get TabForecastWeather
-        mLocationWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findWeather("location"); //search via user location
-            }
-        });
 
         //SEARCH FOR CURRENT LOCATION
         findWeather("location");
@@ -295,14 +268,6 @@ public class MainActivity extends AppCompatActivity {
 
         String city = getSavedLocation.getLocations().get(0).getCity();
         Log.i(TAG, "onCreate: city " + city);
-        //Setup the location spinner
-        ArrayAdapter<com.android.m4racz.stormy.Settings.Location> mAdapterForSearch =
-                new ArrayAdapter<>(context, R.layout.custom_spinner, getSavedLocation.getLocations());
-        mAdapterForSearch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mInputLocation.setAdapter(mAdapterForSearch);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mInputLocation.setBackgroundTintList(getColorStateList(R.color.colorWhite));
-        }
     }
     /*
      *

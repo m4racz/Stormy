@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/tools">
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#625ea6</color>
     <color name="colorStatusBar">#00838f</color>
     <color name="colorText">#757575</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorToolbar">#64dfdfdf</color>
-    <color name="primaryColor">#7b1fa2</color>
-    <color name="primaryLightColor">#ae52d4</color>
-    <color name="primaryDarkColor">#4a0072</color>
+
+    <color name="primaryColor">#323376</color>
+    <color name="primaryLightColor">#615da5</color>
+    <color name="primaryDarkColor">#000e4a</color>
     <color name="primaryTextColor">#ffffff</color>
 </resources>

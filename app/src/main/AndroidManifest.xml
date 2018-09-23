@@ -25,7 +25,7 @@
         <activity
             android:name=".About.About"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
