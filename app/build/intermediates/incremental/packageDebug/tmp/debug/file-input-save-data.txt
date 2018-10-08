@@ -1,15 +1,19 @@
 #Internal package file, do not edit.
-#Sat Sep 22 17:53:37 CEST 2018
-1.base=C\:\\Users\\m4rac\\AndroidStudioProjects\\Stormy\\app\\build\\intermediates\\assets\\debug
-2.path=Roboto-Light.ttf
+#Thu Sep 27 09:26:26 CEST 2018
+1.base=C\:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\assets\\debug
+2.path=classes.dex
 0.baseType=DIRECTORY
-2.base=C\:\\Users\\m4rac\\AndroidStudioProjects\\Stormy\\app\\build\\intermediates\\assets\\debug
-2.set=ASSET
+3.baseType=DIRECTORY
+2.base=C\:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+3.set=ASSET
+2.set=DEX
 1.baseType=DIRECTORY
-count=3
+3.path=Roboto-Light.ttf
+count=4
 1.set=ASSET
-0.path=classes.dex
-0.set=DEX
-0.base=C\:\\Users\\m4rac\\AndroidStudioProjects\\Stormy\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+0.path=meteocons.ttf
+3.base=C\:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\assets\\debug
+0.set=ASSET
+0.base=C\:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\assets\\debug
 2.baseType=DIRECTORY
 1.path=Roboto-Thin.ttf

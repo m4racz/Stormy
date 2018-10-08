@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -52,9 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public Spinner mInputLocation;
-    public ImageView mSearchWeather;
-    public ImageView mLocationWeather;
     public LocationManager locationManager;
     public LocationListener locationListener;
     public Location location;
@@ -154,13 +152,11 @@ public class MainActivity extends AppCompatActivity {
         //FORCE KEYBOARD OVERLAY to prevent screen adjust during entering search
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        //INIT UI PARTS
-        mInputLocation = this.findViewById(R.id.xSpinnerSearch);
-        mSearchWeather = this.findViewById(R.id.xSearchImage);
-        mLocationWeather = this.findViewById(R.id.xLocationImage);
-
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
+
+        //Init text views
+
 
         //Configure Location Manager
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -276,10 +272,15 @@ public class MainActivity extends AppCompatActivity {
     private void hideKeyBoard() {
         InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
-            inputMethodManager.hideSoftInputFromWindow(mInputLocation.getWindowToken(), 0);
+            //inputMethodManager.hideSoftInputFromWindow(mInputLocation.getWindowToken(), 0);
         }
     }
 
+    private void initTextViews (){
+        Typeface weatherIcon = Typeface.createFromAsset(this.getAssets(),"meteocons.ttf");
+        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),"Roboto-Light.ttf" );
+        Typeface robotoThin = Typeface.createFromAsset(this.getAssets(), "Roboto-Thin.ttf");
+    }
 
     /**
      Search for weather in CurrentWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city

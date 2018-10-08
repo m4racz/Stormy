@@ -1,3 +1,4 @@
+
 package com.android.m4racz.stormy;
 
 import android.content.Context;
@@ -31,16 +32,12 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView weatherDescription, weatherDate, weatherTemp, weatherDayOfWeek;
-        public ImageView weatherIcon;
+        public TextView weatherDescription, weatherDate, weatherTemp, weatherDayOfWeek,weatherIcon;
 
         public MyViewHolder(View view){
             super(view);
-            weatherDescription = (TextView) view.findViewById(R.id.xForecastItemDescription);
-            weatherDate = (TextView) view.findViewById(R.id.xForecastItemDateTime);
-            weatherTemp = (TextView) view.findViewById(R.id.xForecastItemTemperature);
-            weatherIcon = (ImageView) view.findViewById(R.id.xForecastItemIcon);
-            weatherDayOfWeek = (TextView) view.findViewById(R.id.xForecastItemDayofWeek);
+            weatherIcon = (TextView) view.findViewById(R.id.forecast_dayOfWeek);
+            weatherDayOfWeek = (TextView) view.findViewById(R.id.forecast_dayOfWeek);
         }
     }
 
@@ -63,8 +60,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         df.setTimeZone(TimeZone.getTimeZone(FetchWeatherInfo.timeZoneId));
 
-
-
         int forecastWeatherTemp = CalcUtils.getRoundedTemperature(list.getMain().getTemp());
         String forecastWeatherTemperature = String.valueOf(forecastWeatherTemp);
 
@@ -72,16 +67,15 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
         int forecastWeatherId = list.getWeather().get(0).getId();
         int iconID = WeatherUtils.getWeatherIcon(forecastWeatherId);
 
-
         String PACKAGE_NAME = context.getPackageName();
         int imgID = context.getResources().getIdentifier(String.valueOf(iconID), null, null);
 
 
-        holder.weatherIcon.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
+        //holder.weatherIcon.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
 
-        holder.weatherDescription.setText(forecastWeatherDescription);
-        holder.weatherDate.setText(df.format((forecastdate.getTime())));
-        holder.weatherTemp.setText(forecastWeatherTemperature);
+        //holder.weatherDescription.setText(forecastWeatherDescription);
+        //holder.weatherDate.setText(df.format((forecastdate.getTime())));
+        //holder.weatherTemp.setText(forecastWeatherTemperature);
         holder.weatherDayOfWeek.setText(CalcUtils.getDayOfWeek(forecastdate));
     }
 
