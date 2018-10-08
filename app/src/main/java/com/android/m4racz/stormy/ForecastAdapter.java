@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.m4racz.stormy.CurrentWeather.Main;
 import com.android.m4racz.stormy.Utils.CalcUtils;
 import com.android.m4racz.stormy.Utils.WeatherUtils;
 
@@ -32,12 +32,24 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView weatherDescription, weatherDate, weatherTemp, weatherDayOfWeek,weatherIcon;
+        public TextView
+                mForecastDescription,
+                mForecastTemperature,
+                mForecastDayOfWeek,
+                mForecastWeatherIcon;
 
         public MyViewHolder(View view){
             super(view);
-            weatherIcon = (TextView) view.findViewById(R.id.forecast_dayOfWeek);
-            weatherDayOfWeek = (TextView) view.findViewById(R.id.forecast_dayOfWeek);
+            mForecastWeatherIcon = (TextView) view.findViewById(R.id.forecast_icon);
+            mForecastDayOfWeek = (TextView) view.findViewById(R.id.forecast_dayOfWeek);
+            mForecastTemperature = (TextView) view.findViewById(R.id.forecast_temperature);
+            mForecastDescription = (TextView) view.findViewById(R.id.forecast_description);
+
+            mForecastDescription.setTypeface(MainActivity.robotoLight);
+            mForecastDayOfWeek.setTypeface(MainActivity.robotoLight);
+            mForecastTemperature.setTypeface(MainActivity.robotoLight);
+            mForecastWeatherIcon.setTypeface(MainActivity.weatherIcon);
+
         }
     }
 
@@ -73,10 +85,11 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
 
         //holder.weatherIcon.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
 
-        //holder.weatherDescription.setText(forecastWeatherDescription);
+        holder.mForecastDescription.setText(forecastWeatherDescription);
         //holder.weatherDate.setText(df.format((forecastdate.getTime())));
-        //holder.weatherTemp.setText(forecastWeatherTemperature);
-        holder.weatherDayOfWeek.setText(CalcUtils.getDayOfWeek(forecastdate));
+        holder.mForecastTemperature.setText("30°/33°");
+        holder.mForecastDayOfWeek.setText(CalcUtils.getDayOfWeek(forecastdate));
+        holder.mForecastWeatherIcon.setText("R");
     }
 
     @Override

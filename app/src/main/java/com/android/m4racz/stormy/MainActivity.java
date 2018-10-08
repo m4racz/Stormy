@@ -20,19 +20,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.m4racz.stormy.About.About;
@@ -44,7 +40,6 @@ import com.google.gson.Gson;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -66,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.tabmap
     };
 
+    private TextView mForecastIcon;
+    private TextView mForecastDay;
+    private TextView mForecastMinTemperature;
+    private TextView mForecastMaxTemperature;
+
+    public static Typeface weatherIcon;
+    public static Typeface robotoLight;
+    public static Typeface robotoThin;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -156,8 +159,7 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         //Init text views
-
-
+        initTextViewFonts();
         //Configure Location Manager
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -269,23 +271,26 @@ public class MainActivity extends AppCompatActivity {
      *
      * Hide Keyboard when invoked
      */
-    private void hideKeyBoard() {
+    private void hideKeyBoard()
+    {
         InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
             //inputMethodManager.hideSoftInputFromWindow(mInputLocation.getWindowToken(), 0);
         }
     }
 
-    private void initTextViews (){
-        Typeface weatherIcon = Typeface.createFromAsset(this.getAssets(),"meteocons.ttf");
-        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),"Roboto-Light.ttf" );
-        Typeface robotoThin = Typeface.createFromAsset(this.getAssets(), "Roboto-Thin.ttf");
+    private void initTextViewFonts()
+    {
+        weatherIcon = Typeface.createFromAsset(this.getAssets(),"meteocons.ttf");
+        robotoLight = Typeface.createFromAsset(this.getAssets(),"Roboto-Light.ttf" );
+        robotoThin  = Typeface.createFromAsset(this.getAssets(), "Roboto-Thin.ttf");
     }
 
     /**
      Search for weather in CurrentWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
      */
-    public void findWeather(String searchType)  {
+    public void findWeather(String searchType)
+    {
 
         NetworkUtilsOpenWeather networkUtilsOpenWeather = new NetworkUtilsOpenWeather();
         URL[] weatherURL = networkUtilsOpenWeather.getUrl(this, searchType);
@@ -306,7 +311,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //setup icons for tabs
-    private void setupTabIcons() {
+    private void setupTabIcons()
+    {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         //tabLayout.getTabAt(2).setIcon(tabIcons[2]);
