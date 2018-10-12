@@ -27,13 +27,81 @@
             <ImageView
                 android:id="@+id/background"
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:layout_height="320sp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/bcg"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                android:contentDescription="TODO" />
 
-            <!-- android:text="TabForecastWeather Description" -->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/main.general_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingEnd="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingStart="8dp"
+                app:layout_collapseMode="parallax">
+
+                <TextView
+                    android:id="@+id/current_weather_icon"
+                    android:layout_width="103dp"
+                    android:layout_height="88dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textAlignment="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="52sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Icon" />
+
+                <TextView
+                    android:id="@+id/current_weather_description"
+                    android:layout_width="241dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="180dp"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Clear sky" />
+
+                <TextView
+                    android:id="@+id/current_weather_last_update"
+                    android:layout_width="240dp"
+                    android:layout_height="23dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="3"
+                    android:textColor="@color/primaryTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/current_weather_description"
+                    tools:text="Last update: 6:59 am" />
+
+                <TextView
+                    android:id="@+id/current_weather_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="107dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="120dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="80sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="32°" />
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -55,15 +123,16 @@
             app:tabSelectedTextColor="@color/primaryLightColor"
             app:tabTextColor="#FFF" />
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-    </android.support.v4.widget.NestedScrollView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.widget.NestedScrollView>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="751dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </android.support.design.widget.CoordinatorLayout>

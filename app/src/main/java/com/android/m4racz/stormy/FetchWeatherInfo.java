@@ -124,6 +124,11 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
         TextView mCurrentVisibilityLabel;
         TextView mCurrentVisibilityValue;
 
+        TextView mCurrentTemperature;
+        TextView mCurrentWeatherIcon;
+        TextView mCurrentDescription;
+        TextView mCurrentLastUpdate;
+
 
         if(result!=null) {
             if (result.size() == 2) {
@@ -264,6 +269,16 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunsetIcon.setTypeface(MainActivity.weatherIcon);
                 mCurrentSunsetLabel.setTypeface(MainActivity.robotoLight);
                 mCurrentSunsetValue.setTypeface(MainActivity.robotoLight);
+                //CurrentWeather
+                mCurrentTemperature = mainActivity.findViewById(R.id.current_weather_temperature);
+                mCurrentWeatherIcon = mainActivity.findViewById(R.id.current_weather_icon);
+                mCurrentDescription = mainActivity.findViewById(R.id.current_weather_description);
+                mCurrentLastUpdate = mainActivity.findViewById(R.id.current_weather_last_update);
+
+                mCurrentTemperature.setTypeface(MainActivity.robotoLight);
+                mCurrentWeatherIcon.setTypeface(MainActivity.weatherIcon);
+                mCurrentDescription.setTypeface(MainActivity.robotoLight);
+                mCurrentLastUpdate.setTypeface(MainActivity.robotoLight);
 
                 //setting Icons
                 mCurrentHumidityIcon.setText("8");
@@ -272,6 +287,8 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunriseIcon.setText("D");
                 mCurrentSunsetIcon.setText("D");
                 mCurrentVisibilityIcon.setText("(");
+                mCurrentWeatherIcon.setText("1");
+
                 //setting labels
                 mCurrentHumidityLabel.setText("Humidity");
                 mCurrentWindLabel.setText("WindSpeed");
@@ -279,6 +296,10 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunriseLabel.setText("Sun Rise");
                 mCurrentSunsetLabel.setText("Sun Set");
                 mCurrentVisibilityLabel.setText("Visibility");
+                mCurrentDescription.setText("Clear Sky");
+                mCurrentLastUpdate.setText("Last update: 3 hours ago");
+                mCurrentTemperature.setText("33°");
+
                 //setting blind values
                 // TODO: 08.10.2018 nastavit ostre hodnoty 
                 mCurrentHumidityValue.setText("95%");
