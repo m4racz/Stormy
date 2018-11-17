@@ -95,10 +95,6 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
     protected void onPostExecute(ArrayList<String> result){
 
         //Create Variables for update current weather above tabs
-        // TODO: 08.10.2018 doplnit
-
-
-        //create variables for update current weather below tabs
 
         TextView mCurrentWindIcon;
         TextView mCurrentWindLabel;
@@ -271,12 +267,10 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunsetValue.setTypeface(MainActivity.robotoLight);
                 //CurrentWeather
                 mCurrentTemperature = mainActivity.findViewById(R.id.current_weather_temperature);
-                mCurrentWeatherIcon = mainActivity.findViewById(R.id.current_weather_icon);
                 mCurrentDescription = mainActivity.findViewById(R.id.current_weather_description);
                 mCurrentLastUpdate = mainActivity.findViewById(R.id.current_weather_last_update);
 
                 mCurrentTemperature.setTypeface(MainActivity.robotoLight);
-                mCurrentWeatherIcon.setTypeface(MainActivity.weatherIcon);
                 mCurrentDescription.setTypeface(MainActivity.robotoLight);
                 mCurrentLastUpdate.setTypeface(MainActivity.robotoLight);
 
@@ -287,7 +281,6 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunriseIcon.setText("D");
                 mCurrentSunsetIcon.setText("D");
                 mCurrentVisibilityIcon.setText("(");
-                mCurrentWeatherIcon.setText("1");
 
                 //setting labels
                 mCurrentHumidityLabel.setText("Humidity");

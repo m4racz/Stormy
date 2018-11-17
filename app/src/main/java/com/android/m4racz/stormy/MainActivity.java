@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     public ViewPager viewPager;
     public ViewPagerAdapter adapter;
+
     public int []tabIcons = {
             R.drawable.tabcurrent,
             R.drawable.tabforecast,
