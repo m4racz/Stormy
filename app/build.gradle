@@ -17,7 +17,7 @@ android {
         }
     }
     sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/networkUtilities'] } }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {

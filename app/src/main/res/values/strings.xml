@@ -28,7 +28,7 @@
     <string name="toolbar_menu_settings">Settings</string>
     <string name="toolbar_menu_about">About</string>
 
-    <!-- Weather icons -->
+    <!-- Weather forecast icons -->
     <string name="icon_clear_sky_day" translatable="false">1</string>
     <string name="icon_clear_sky_night" translatable="false">2</string>
     <string name="icon_few_clouds_day" translatable="false">3</string>

@@ -50,52 +50,65 @@
 
                 <TextView
                     android:id="@+id/current_weather_description"
-                    android:layout_width="241dp"
-                    android:layout_height="22dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
+                    android:layout_width="240dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="0.0"
+                    android:shadowDy="0.0"
+                    android:shadowRadius="18"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/current_weather_last_update"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/current_weather_temperature"
-                    tools:text="Clear sky" />
+                    tools:text="Condition: Clear sky" />
 
                 <TextView
                     android:id="@+id/current_weather_last_update"
                     android:layout_width="240dp"
                     android:layout_height="23dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
                     android:gravity="center_vertical"
-                    android:maxLines="3"
-                    android:textColor="@color/primaryTextColor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/current_weather_description"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:text="Last update: 6:59 am" />
-
-                <TextView
-                    android:id="@+id/current_weather_temperature"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginEnd="120dp"
-                    android:layout_marginRight="120dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="5dp"
                     android:shadowColor="#FFFFFF"
                     android:shadowDx="0.0"
                     android:shadowDy="0.0"
                     android:shadowRadius="18"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="100sp"
+                    android:maxLines="1"
+                    android:textColor="@color/primaryTextColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Last update: 6:59 am" />
+
+                <TextView
+                    android:id="@+id/current_weather_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="0.0"
+                    android:shadowDy="0.0"
+                    android:shadowRadius="18"
+                    android:textSize="40sp"
+                    android:textColor="@color/primaryTextColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="32°" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="200sp"
+                    android:layout_height="200sp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="32°" />
+                    app:srcCompat="@drawable/weather_rain" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar
