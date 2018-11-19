@@ -90,24 +90,27 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center_vertical"
                     android:maxLines="1"
+                    android:paddingLeft="4sp"
+                    android:paddingTop="4sp"
+                    android:paddingRight="4sp"
+                    android:paddingBottom="4sp"
                     android:shadowColor="#FFFFFF"
                     android:shadowDx="0.0"
                     android:shadowDy="0.0"
                     android:shadowRadius="18"
-                    android:textSize="40sp"
                     android:textColor="@color/primaryTextColor"
+                    android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="32°" />
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="200sp"
-                    android:layout_height="200sp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="129dp"
+                    android:layout_height="114dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/weather_rain" />
             </android.support.constraint.ConstraintLayout>
 

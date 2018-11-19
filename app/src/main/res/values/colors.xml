@@ -6,9 +6,18 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorToolbar">#64dfdfdf</color>
 
+
+
+    <color name="primaryColor">#131e1e</color>
+    <color name="primaryLightColor">#394545</color>
+    <color name="primaryDarkColor">#000000</color>
+    <color name="primaryTextColor">#ffffff</color>
+
+
+    <!--
     <color name="primaryColor">#292929</color>
     <color name="primaryLightColor">#515151</color>
     <color name="primaryDarkColor">#000000</color>
     <color name="primaryTextColor">#ffffff</color>
-
+    -->
 </resources>
