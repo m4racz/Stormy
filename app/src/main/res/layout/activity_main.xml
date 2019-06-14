@@ -49,15 +49,23 @@
                 app:layout_collapseMode="parallax">
 
                 <TextView
-                    android:id="@+id/current_weather_description"
+                    android:id="@+id/current_weather_location"
                     android:layout_width="240dp"
                     android:layout_height="23dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="0.0"
-                    android:shadowDy="0.0"
-                    android:shadowRadius="18"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/current_weather_condition"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Location: Prague" />
+
+                <TextView
+                    android:id="@+id/current_weather_condition"
+                    android:layout_width="240dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/current_weather_last_update"
@@ -71,15 +79,35 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:gravity="center_vertical"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="0.0"
-                    android:shadowDy="0.0"
-                    android:shadowRadius="18"
                     android:maxLines="1"
+                    android:textSize="16sp"
                     android:textColor="@color/primaryTextColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Last update: 6:59 am" />
+
+                <TextView
+                    android:id="@+id/current_weather_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingLeft="4sp"
+                    android:paddingTop="4sp"
+                    android:paddingRight="4sp"
+                    android:paddingBottom="4sp"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="80sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.203"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="IC" />
 
                 <TextView
                     android:id="@+id/current_weather_temperature"
@@ -104,14 +132,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="32°" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="129dp"
-                    android:layout_height="114dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/weather_rain" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar

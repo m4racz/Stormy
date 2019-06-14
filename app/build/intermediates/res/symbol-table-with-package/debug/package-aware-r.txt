@@ -891,8 +891,10 @@ id current_sunset_value
 id current_visibility_icon
 id current_visibility_label
 id current_visibility_value
-id current_weather_description
+id current_weather_condition
+id current_weather_icon
 id current_weather_last_update
+id current_weather_location
 id current_weather_temperature
 id current_wind_icon
 id current_wind_label
@@ -934,7 +936,6 @@ id icon
 id icon_group
 id ifRoom
 id image
-id imageView
 id info
 id invisible
 id italic

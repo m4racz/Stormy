@@ -11,11 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.m4racz.stormy.CurrentWeather.CurrentWeather;
-import com.android.m4racz.stormy.CurrentWeather.Main;
 import com.android.m4racz.stormy.ForecastWeather.ForecastWeather;
 import com.android.m4racz.stormy.ForecastWeather.List;
 import com.android.m4racz.stormy.Utils.CalcUtils;
@@ -122,8 +120,9 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
 
         TextView mCurrentTemperature;
         TextView mCurrentWeatherIcon;
-        TextView mCurrentDescription;
+        TextView mCurrentLocation;
         TextView mCurrentLastUpdate;
+        TextView mCurrentCondition;
 
 
         if(result!=null) {
@@ -265,14 +264,27 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunsetIcon.setTypeface(MainActivity.weatherIcon);
                 mCurrentSunsetLabel.setTypeface(MainActivity.robotoLight);
                 mCurrentSunsetValue.setTypeface(MainActivity.robotoLight);
-                //CurrentWeather
+
+                //CurrentWeather Upper Section
+                mCurrentWeatherIcon = mainActivity.findViewById(R.id.current_weather_icon);
                 mCurrentTemperature = mainActivity.findViewById(R.id.current_weather_temperature);
-                mCurrentDescription = mainActivity.findViewById(R.id.current_weather_description);
+                mCurrentLocation = mainActivity.findViewById(R.id.current_weather_location);
                 mCurrentLastUpdate = mainActivity.findViewById(R.id.current_weather_last_update);
+                mCurrentCondition = mainActivity.findViewById(R.id.current_weather_condition);
 
                 mCurrentTemperature.setTypeface(MainActivity.robotoLight);
-                mCurrentDescription.setTypeface(MainActivity.robotoLight);
+                mCurrentLocation.setTypeface(MainActivity.robotoLight);
                 mCurrentLastUpdate.setTypeface(MainActivity.robotoLight);
+                mCurrentWeatherIcon.setTypeface(MainActivity.weatherIcon);
+                mCurrentCondition.setTypeface(MainActivity.robotoLight);
+
+                //Current Weather UpperSection
+                mCurrentWeatherIcon.setText("R");
+                mCurrentLocation.setText("Location: Prague");
+                mCurrentLastUpdate.setText("Last update: 3 hours ago");
+                mCurrentTemperature.setText("33°");
+                mCurrentCondition.setText("Condition: Clear Sky");
+
 
                 //setting Icons
                 mCurrentHumidityIcon.setText("8");
@@ -282,6 +294,7 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunsetIcon.setText("D");
                 mCurrentVisibilityIcon.setText("(");
 
+
                 //setting labels
                 mCurrentHumidityLabel.setText("Humidity");
                 mCurrentWindLabel.setText("WindSpeed");
@@ -289,12 +302,8 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunriseLabel.setText("Sun Rise");
                 mCurrentSunsetLabel.setText("Sun Set");
                 mCurrentVisibilityLabel.setText("Visibility");
-                mCurrentDescription.setText("Clear Sky");
-                mCurrentLastUpdate.setText("Last update: 3 hours ago");
-                mCurrentTemperature.setText("33°");
 
                 //setting blind values
-                // TODO: 08.10.2018 nastavit ostre hodnoty 
                 mCurrentHumidityValue.setText("95%");
                 mCurrentWindValue.setText("35 m/s");
                 mCurrentPreasureValue.setText("1015 hPa");
@@ -302,28 +311,6 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunsetValue.setText("22:50");
                 mCurrentVisibilityValue.setText("10000m");
 
-
-
-                /*
-                weatherCurrentForecast.setText(currentWeather.getWeather().get(0).getDescription());
-                weatherForecastDate.setText(df.format((forecastdate.getTime())));
-                weatherCurrentLocation.setText(String.format("%s, %s", currentWeather.getName(), currentWeather.getSys().getCountry()));
-
-                mCurrentTemperature.setText(String.format("%s °C", currentTemperature));
-                weatherTemperatureMax.setText(String.format("Min: %s °C", maxTemperature));
-                weatherTemperatureMin.setText(String.format("Max: %s °C", minTemperature));
-                mCurrentWindSpeed.setText(String.format("Wind: %1$s m/s %2$s", windSpeed, windDirection));
-
-                //set Image Views
-
-                int weatherIconsGson = currentWeather.getWeather().get(0).getId();
-                int weatherIconID = WeatherUtils.getWeatherIcon(weatherIconsGson);
-
-                String PACKAGE_NAME = context.getPackageName();
-                int imgID = context.getResources().getIdentifier(String.valueOf(weatherIconID), null, null);
-                Log.i(TAG, "imgID: " + imgID);
-                weatherIconImage.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
-                */
             }
         }
 

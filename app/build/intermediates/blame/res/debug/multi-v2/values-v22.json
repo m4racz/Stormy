@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\m4rac\\AndroidStudioProjects\\Stormy\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
+            "outputFile": "C:\\Users\\Jan Marek\\StudioProjects\\Stormy\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\m4rac\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\11f696eb52d5ffd926054f3e75ffb852\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\Jan Marek\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\6859b64a84edf4c6e8475c7109ab83ba\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",
