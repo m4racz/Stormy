@@ -208,37 +208,9 @@ public class MainActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.primaryDarkColor));
 
-        /*
-        //Create onFocusChange listener to hide keyboard and show dropdown
-        mInputLocation.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if(!hasFocus){
-                    hideKeyBoard();
-                }
-            }
-        });
-
-        mInputLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                boolean handled = false;
-                Log.i(TAG, "onEditorAction: keyCode" + keyEvent.getKeyCode());
-                if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)
-                {
-                    handled = true;
-                    hideKeyBoard();
-                    findWeather("input");
-
-                }
-                return handled;
-            }
-        });
-        */
-
-
         //SEARCH FOR CURRENT LOCATION
         findWeather("location");
+
 
         //INSERT LOCATION TO PREFERENCES
         String savedLocationsPrefsTag = "com.android.m4racz.stormy.SavedLocations";
@@ -271,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
         String city = getSavedLocation.getLocations().get(0).getCity();
         Log.i(TAG, "onCreate: city " + city);
     }
+
     /*
      *
      * Hide Keyboard when invoked

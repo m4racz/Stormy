@@ -130,6 +130,8 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 try {
                     currentWeather = parseCurrentWeatherJSONgson(result.get(0));
                     forecastWeather = parseForecastWeatherJSONgson(result.get(1));
+                    Log.i(TAG, "onPostExecute: currentWeather" + currentWeather);
+                    Log.i(TAG, "onPostExecute: forecastWeather" + forecastWeather);
                 }
                 catch (Exception e){
                     e.printStackTrace();
