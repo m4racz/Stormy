@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         //SEARCH FOR CURRENT LOCATION
         findWeather("location");
 
-
+        /*
         //INSERT LOCATION TO PREFERENCES
         String savedLocationsPrefsTag = "com.android.m4racz.stormy.SavedLocations";
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(savedLocationsPrefsTag, MODE_PRIVATE);
@@ -242,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
 
         String city = getSavedLocation.getLocations().get(0).getCity();
         Log.i(TAG, "onCreate: city " + city);
+        */
     }
 
     /*

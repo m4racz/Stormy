@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,8 +28,11 @@ import com.google.gson.Gson;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 
@@ -89,6 +94,7 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("Range")
     protected void onPostExecute(ArrayList<String> result){
 
@@ -204,13 +210,13 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
             int maxTemperature = CalcUtils.getRoundedTemperature(currentWeather.getMain().getTempMax());
 
             //get wind direction and speed
-            String windDirection = WeatherUtils.getWindDirection(currentWeather.getWind().getDeg());
-            String windSpeed = Double.toString(currentWeather.getWind().getSpeed());
 
             //Update Fragments
             int fragmentCount = adapter.getCount();
             Log.i(TAG, "onPostExecute fragmentCount: "+ fragmentCount);
 
+
+            //get fragment current weather
             Fragment fCurrentWeather = adapter.getItem(0);
             View vCurrentWeather = fCurrentWeather.getView();
 
@@ -280,13 +286,27 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentWeatherIcon.setTypeface(MainActivity.weatherIcon);
                 mCurrentCondition.setTypeface(MainActivity.robotoLight);
 
-                //Current Weather UpperSection
-                mCurrentWeatherIcon.setText("R");
-                mCurrentLocation.setText("Location: Prague");
-                mCurrentLastUpdate.setText("Last update: 3 hours ago");
-                mCurrentTemperature.setText("33°");
-                mCurrentCondition.setText("Condition: Clear Sky");
+                //get condition description
+                String conditionDescription = currentWeather.getWeather().get(0).getDescription();
 
+                //get weather condition id
+                int idCondition = currentWeather.getWeather().get(0).getId();
+                String conditionIcon = WeatherUtils.getWeatherIcon(idCondition);
+
+                //get location
+                String weatherLocation = currentWeather.getName();
+
+                //get current date + time
+                LocalDateTime currentDate = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                currentDate.format(formatter);
+
+                //Current Weather UpperSection
+                mCurrentWeatherIcon.setText(conditionIcon);
+                mCurrentLocation.setText("Location: " + weatherLocation);
+                mCurrentLastUpdate.setText("Update: " + currentDate.format(formatter));
+                mCurrentTemperature.setText( currentTemperature + "°");
+                mCurrentCondition.setText("Condition: " +conditionDescription);
 
                 //setting Icons
                 mCurrentHumidityIcon.setText("8");
@@ -296,22 +316,32 @@ public class FetchWeatherInfo extends AsyncTask<String, Void, ArrayList<String>>
                 mCurrentSunsetIcon.setText("D");
                 mCurrentVisibilityIcon.setText("(");
 
-
                 //setting labels
                 mCurrentHumidityLabel.setText("Humidity");
-                mCurrentWindLabel.setText("WindSpeed");
+                mCurrentWindLabel.setText("Wind");
                 mCurrentPreasureLabel.setText("Preasure");
                 mCurrentSunriseLabel.setText("Sun Rise");
                 mCurrentSunsetLabel.setText("Sun Set");
                 mCurrentVisibilityLabel.setText("Visibility");
 
+                String windDirection = WeatherUtils.getWindDirection(currentWeather.getWind().getDeg());
+                String windSpeed = Double.toString(currentWeather.getWind().getSpeed());
+                Double pressure = currentWeather.getMain().getPressure();
+                Integer visibility = currentWeather.getVisibility();
+                Integer humidity = currentWeather.getMain().getHumidity();
+
+                int sunRiseEpoch = currentWeather.getSys().getSunrise();
+                int sunSetEpoch = currentWeather.getSys().getSunset();
+                String sunRise = new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date (sunRiseEpoch*1000));
+                String sunSet= new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date (sunSetEpoch*1000));
+
                 //setting blind values
-                mCurrentHumidityValue.setText("95%");
-                mCurrentWindValue.setText("35 m/s");
-                mCurrentPreasureValue.setText("1015 hPa");
-                mCurrentSunriseValue.setText("05:50");
-                mCurrentSunsetValue.setText("22:50");
-                mCurrentVisibilityValue.setText("10000m");
+                mCurrentHumidityValue.setText(humidity + " %");
+                mCurrentWindValue.setText( windSpeed + " m/s " + windDirection);
+                mCurrentPreasureValue.setText(pressure + " hPa");
+                mCurrentVisibilityValue.setText(visibility + "m");
+                mCurrentSunriseValue.setText(sunRise);
+                mCurrentSunsetValue.setText(sunSet);
 
             }
         }

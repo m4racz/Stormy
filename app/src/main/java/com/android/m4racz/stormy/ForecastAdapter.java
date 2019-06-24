@@ -64,31 +64,32 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        //get forecast weather position
         com.android.m4racz.stormy.ForecastWeather.List list = (com.android.m4racz.stormy.ForecastWeather.List) forecastList.get(position);
-        String forecastWeatherDescription =  list.getWeather().get(0).getDescription();
+        //set forecast date time
         String forecastWeatherDate = list.getDtTxt();
-
         Calendar forecastdate = WeatherUtils.convertCurrentWeatherToCorrectTimeZone(list.getDt(), FetchWeatherInfo.timeZoneId);
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         df.setTimeZone(TimeZone.getTimeZone(FetchWeatherInfo.timeZoneId));
-
         int forecastWeatherTemp = CalcUtils.getRoundedTemperature(list.getMain().getTemp());
         String forecastWeatherTemperature = String.valueOf(forecastWeatherTemp);
-
-
         int forecastWeatherId = list.getWeather().get(0).getId();
-        int iconID = WeatherUtils.getWeatherIcon(forecastWeatherId);
-
         String PACKAGE_NAME = context.getPackageName();
-        int imgID = context.getResources().getIdentifier(String.valueOf(iconID), null, null);
-
-
-        //holder.weatherIcon.setImageResource(context.getResources().getIdentifier(String.valueOf(imgID), "drawable", PACKAGE_NAME));
-
-        holder.mForecastDescription.setText(forecastWeatherDescription);
-        //holder.weatherDate.setText(df.format((forecastdate.getTime())));
-        holder.mForecastTemperature.setText("30°/33°");
         holder.mForecastDayOfWeek.setText(CalcUtils.getDayOfWeek(forecastdate));
+
+        //set weather description
+        String forecastWeatherDescription =  list.getWeather().get(0).getDescription();
+        holder.mForecastDescription.setText(forecastWeatherDescription);
+
+        //set min + max temperature
+        Double forecastMin = list.getMain().getTempMin();
+        Double forecastMax = list.getMain().getTempMax();
+
+        CalcUtils.getRoundedTemperature(forecastMax);
+
+        holder.mForecastTemperature.setText(forecastMin + "° / " + forecastMax + "°");
+
+        //set weather icon
         holder.mForecastWeatherIcon.setText("R");
     }
 
