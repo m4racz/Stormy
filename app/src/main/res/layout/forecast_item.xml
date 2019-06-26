@@ -37,7 +37,7 @@
         android:layout_marginStart="91dp"
         android:layout_marginLeft="91dp"
         android:textColor="@color/colorText"
-        tools:text="Sat" />
+        tools:text="Sat " />
 
     <TextView
         android:id="@+id/forecast_temperature"
@@ -45,22 +45,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginLeft="130dp"
         android:textColor="@color/colorText"
+        android:layout_marginRight="8dp"
         tools:text="30°/33°" />
 
     <TextView
         android:id="@+id/forecast_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="206dp"
-        android:layout_marginLeft="206dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginLeft="236dp"
+        android:maxLines="1"
+        android:textAlignment="center"
         android:textColor="@color/colorText"
         tools:text="Cloudy with ThunderStorm" />
 
