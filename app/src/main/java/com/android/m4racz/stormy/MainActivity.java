@@ -87,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
+            case R.id.main_menu_detect_location:
+                Log.i(TAG, "onOptionsItemSelected: Location detect clicked");
+                findWeather("location");
+                return true;
             case R.id.main_menu_settings:
                 Log.i(TAG, "onOptionsItemSelected: settings clicked");
                 Intent settingsActivity = new Intent(getApplicationContext(), Settings.class);
