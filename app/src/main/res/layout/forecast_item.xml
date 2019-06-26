@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -7,58 +9,59 @@
     android:focusable="true"
     android:orientation="vertical"
     android:paddingBottom="8dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:paddingTop="8dp">
 
     <TextView
-        android:id="@+id/xForecastItemDateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="date + time"
-        android:textColor="@color/colorWhite" />
+        android:id="@+id/forecast_icon"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:textSize="30sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:gravity="center"
+        android:textColor="@color/colorText"
+        tools:text="ICON" />
 
     <TextView
-        android:id="@+id/xForecastItemDayofWeek"
+        android:id="@+id/forecast_dayOfWeek"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/xForecastItemDateTime"
-        android:layout_alignStart="@+id/xForecastItemDateTime"
-        android:layout_alignTop="@+id/xForecastItemTemperature"
-        android:text="dayOfWeek"
-        android:textColor="@color/colorWhite" />
-
-    <ImageView
-        android:id="@+id/xForecastItemIcon"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:textAlignment="center" />
-
-    <TextView
-        android:id="@+id/xForecastItemDescription"
-        android:layout_width="173dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="74dp"
-        android:text="Forecast Description"
-        android:textColor="@color/colorWhite"
-        android:textSize="16dp"
-        android:textStyle="bold"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="74dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginLeft="91dp"
+        android:textColor="@color/colorText"
+        tools:text="Sat" />
 
     <TextView
-        android:id="@+id/xForecastItemTemperature"
-        android:layout_width="173dp"
+        android:id="@+id/forecast_temperature"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/xForecastItemIcon"
-        android:layout_alignStart="@+id/xForecastItemDescription"
-        android:text="forecast Temperature"
-        android:textColor="@color/colorWhite"
-        android:layout_alignLeft="@+id/xForecastItemDescription" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
+        android:textColor="@color/colorText"
+        tools:text="30°/33°" />
 
-
+    <TextView
+        android:id="@+id/forecast_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="206dp"
+        android:layout_marginLeft="206dp"
+        android:textColor="@color/colorText"
+        tools:text="Cloudy with ThunderStorm" />
 
 </RelativeLayout>

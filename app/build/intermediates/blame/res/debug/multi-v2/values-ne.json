@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\__HOME\\Andoid_Projects\\Stormy\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ne\\values-ne.xml",
+            "outputFile": "C:\\Users\\Jan Marek\\StudioProjects\\Stormy\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ne\\values-ne.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\39f3de028d6d6abd6ebee881f61297e5\\res\\values-ne\\values-ne.xml",
+                    "source": "C:\\Users\\Jan Marek\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\3981ab9c0003efb3cae6485fabcd451d\\res\\values-ne\\values-ne.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\janmarek1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\e5d8d650931639fad362deb085dc03cb\\res\\values-ne\\values-ne.xml",
+                    "source": "C:\\Users\\Jan Marek\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\6859b64a84edf4c6e8475c7109ab83ba\\res\\values-ne\\values-ne.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

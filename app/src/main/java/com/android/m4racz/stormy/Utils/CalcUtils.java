@@ -53,25 +53,25 @@ public final class CalcUtils {
         int dayNumber = date.get(Calendar.DAY_OF_WEEK);
         switch (dayNumber) {
             case 1:
-                dayOfWeek = "Sunday";
+                dayOfWeek = "Sun";
                 break;
             case 2:
-                dayOfWeek = "Monday";
+                dayOfWeek = "Mon";
                 break;
             case 3:
-                dayOfWeek = "Tuesday";
+                dayOfWeek = "Tue";
                 break;
             case 4:
-                dayOfWeek = "Wednesday";
+                dayOfWeek = "Wed";
                 break;
             case 5:
-                dayOfWeek = "Thursday";
+                dayOfWeek = "Thu";
                 break;
             case 6:
-                dayOfWeek = "Friday";
+                dayOfWeek = "Fri";
                 break;
             case 7:
-                dayOfWeek = "Saturday";
+                dayOfWeek = "Sat";
         }
         return dayOfWeek;
     }

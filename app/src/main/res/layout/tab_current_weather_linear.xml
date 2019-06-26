@@ -1,0 +1,295 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="2">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayout2"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/current_wind_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="36sp"
+            tools:text="ICON" />
+
+        <TextView
+            android:id="@+id/current_wind_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/current_wind_icon"
+            android:layout_toRightOf="@id/current_wind_icon"
+            tools:text="Wind" />
+
+        <TextView
+            android:id="@+id/current_wind_value"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_alignBottom="@id/current_wind_icon"
+            android:layout_alignLeft="@id/current_wind_label"
+            android:layout_alignStart="@id/current_wind_label"
+            android:layout_below="@+id/current_wind_label"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            tools:text="5km/h" />
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayout4"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+        <TextView
+            android:id="@+id/current_humidity_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="36sp"
+            tools:text="ICON" />
+
+        <TextView
+            android:id="@+id/current_humidity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/current_humidity_icon"
+            android:layout_toRightOf="@id/current_humidity_icon"
+            tools:text="humidity" />
+
+        <TextView
+            android:id="@+id/current_humidity_value"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@id/current_humidity_icon"
+            android:layout_alignLeft="@id/current_humidity_label"
+            android:layout_alignStart="@id/current_humidity_label"
+            android:layout_below="@+id/current_humidity_label"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            tools:text="95%" />
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayout5"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+
+        <TextView
+            android:id="@+id/current_preasure_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="6dp"
+            android:textSize="36sp"
+            tools:text="ICON" />
+
+        <TextView
+            android:id="@+id/current_preasure_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/current_preasure_icon"
+            android:layout_toRightOf="@id/current_preasure_icon"
+            tools:text="Preasure" />
+
+        <TextView
+            android:id="@+id/current_preasure_value"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@id/current_preasure_icon"
+            android:layout_alignLeft="@id/current_preasure_label"
+            android:layout_alignStart="@id/current_preasure_label"
+            android:layout_below="@+id/current_preasure_label"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            tools:text="1051 hPa" />
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayout3"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/current_visibility_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="36sp"
+            tools:text="ICON" />
+
+        <TextView
+            android:id="@+id/current_visibility_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/current_visibility_icon"
+            android:layout_toRightOf="@id/current_visibility_icon"
+            tools:text="Visibility" />
+
+        <TextView
+            android:id="@+id/current_visibility_value"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@id/current_visibility_icon"
+            android:layout_alignLeft="@id/current_visibility_label"
+            android:layout_alignStart="@id/current_visibility_label"
+            android:layout_below="@+id/current_visibility_label"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            tools:text="10000m" />
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
+
+        <TextView
+            android:id="@+id/current_sunrise_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="36sp"
+            tools:text="ICON" />
+
+        <TextView
+            android:id="@+id/current_sunrise_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/current_sunrise_icon"
+            android:layout_toRightOf="@id/current_sunrise_icon"
+            tools:text="Sun rise" />
+
+        <TextView
+            android:id="@+id/current_sunrise_value"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@id/current_sunrise_icon"
+            android:layout_alignLeft="@id/current_sunrise_label"
+            android:layout_alignStart="@id/current_sunrise_label"
+            android:layout_below="@+id/current_sunrise_label"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            tools:text="04:50" />
+    </RelativeLayout>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayout"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5">
+
+        <TextView
+            android:id="@+id/current_sunset_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="36sp"
+            tools:text="ICON" />
+
+        <TextView
+            android:id="@+id/current_sunset_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/current_sunset_icon"
+            android:layout_toRightOf="@id/current_sunset_icon"
+            tools:text="Sun rise" />
+
+        <TextView
+            android:id="@+id/current_sunset_value"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@id/current_sunset_icon"
+            android:layout_alignLeft="@id/current_sunset_label"
+            android:layout_alignStart="@id/current_sunset_label"
+            android:layout_below="@+id/current_sunset_label"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            tools:text="20:50" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

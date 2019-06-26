@@ -3,7 +3,9 @@ package com.android.m4racz.stormy;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,32 +21,26 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.m4racz.stormy.About.About;
 import com.android.m4racz.stormy.Data.WeatherDbHelper;
-import com.android.m4racz.stormy.ForecastWeather.ForecastWeather;
+import com.android.m4racz.stormy.Settings.SavedLocations;
 import com.android.m4racz.stormy.Settings.Settings;
 import com.android.m4racz.stormy.Utils.NetworkUtilsOpenWeather;
+import com.google.gson.Gson;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public EditText mInputCity;
-    public ImageView mSearchWeather;
-    public ImageView mLocationWeather;
     public LocationManager locationManager;
     public LocationListener locationListener;
     public Location location;
@@ -62,11 +55,21 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     public ViewPager viewPager;
     public ViewPagerAdapter adapter;
+
     public int []tabIcons = {
             R.drawable.tabcurrent,
             R.drawable.tabforecast,
             R.drawable.tabmap
     };
+
+    private TextView mForecastIcon;
+    private TextView mForecastDay;
+    private TextView mForecastMinTemperature;
+    private TextView mForecastMaxTemperature;
+
+    public static Typeface weatherIcon;
+    public static Typeface robotoLight;
+    public static Typeface robotoThin;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -84,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
-            case R.id.settings:
+            case R.id.main_menu_settings:
                 Log.i(TAG, "onOptionsItemSelected: settings clicked");
                 Intent settingsActivity = new Intent(getApplicationContext(), Settings.class);
                 this.startActivity(settingsActivity);
                 return true;
-            case R.id.about:
+            case R.id.main_menu_about:
                 Log.i(TAG, "onOptionsItemSelected: about clicked");
                 Intent aboutActivity = new Intent(getApplicationContext(), About.class);
                 this.startActivity(aboutActivity);
@@ -102,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
 
@@ -124,9 +128,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         //SET MAIN SCREEN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //SET TOOLBAR MENU
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); //disable title in toolbar
 
         //INIT DBS
         WeatherDbHelper db = new WeatherDbHelper(this);
@@ -147,19 +157,12 @@ public class MainActivity extends AppCompatActivity {
 
         //FORCE KEYBOARD OVERLAY to prevent screen adjust during entering search
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        //INIT UI PARTS
-        mInputCity = this.findViewById(R.id.xInputSearch);
-        mSearchWeather = this.findViewById(R.id.xSearchImage);
-        mLocationWeather = this.findViewById(R.id.xLocationImage);
-
-        //SET TOOLBAR MENU
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.xToolBar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); //disable title in toolbar
 
         //get current context that will be passed to downloadTask
         context = getApplicationContext();
 
+        //Init text views
+        initTextViewFonts();
         //Configure Location Manager
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -184,7 +187,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         //check if we have permission to access location
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
 
@@ -197,87 +201,74 @@ public class MainActivity extends AppCompatActivity {
 
         //change color of status bar
         Window window = this.getWindow();
-
         // clear FLAG_TRANSLUCENT_STATUS flag:
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar));
-        //Create onFocusChange listener to hide keyboard
-        mInputCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if(!hasFocus){
-                    hideKeyBoard();
-                }
-            }
-        });
-
-        mInputCity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                boolean handled = false;
-                Log.i(TAG, "onEditorAction: keyCode" + keyEvent.getKeyCode());
-                if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)
-                {
-                    handled = true;
-                    hideKeyBoard();
-                    findWeather("input");
-
-                }
-                return handled;
-            }
-        });
-
-        //Create on click listener for Search by string to Get TabForecastWeather
-        mSearchWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                hideKeyBoard();
-                findWeather("input"); //search via input string
-            }
-        });
-
-        //create on loose focus listener to hide keyboard
-        mSearchWeather.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){
-                    hideKeyBoard();
-                }
-            }
-        });
-
-        //Create on click listener for search by Location to Get TabForecastWeather
-        mLocationWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findWeather("location"); //search via user location
-            }
-        });
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.primaryDarkColor));
 
         //SEARCH FOR CURRENT LOCATION
         findWeather("location");
+
+        /*
+        //INSERT LOCATION TO PREFERENCES
+        String savedLocationsPrefsTag = "com.android.m4racz.stormy.SavedLocations";
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(savedLocationsPrefsTag, MODE_PRIVATE);
+        Gson gson = new Gson();
+        com.android.m4racz.stormy.Settings.Location locationToSave = new com.android.m4racz.stormy.Settings.Location();
+        locationToSave.setCity("Prague");
+        locationToSave.setCountry("CZ");
+        locationToSave.setLat(15);
+        locationToSave.setLon(50);
+
+        SavedLocations savedLocations = new SavedLocations();
+        savedLocations.setLocations(Collections.singletonList(locationToSave));
+
+        String json = gson.toJson(savedLocations);
+        Log.i(TAG, "onCreate: " + json);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(savedLocationsPrefsTag,json);
+        editor.apply();
+        editor.commit();
+
+        String savedLocation = sharedPreferences.getString(savedLocationsPrefsTag,"");
+        Log.i(TAG, "onCreate: "+ savedLocation);
+
+        //GET LOCATION FROM PREFERENCES
+        String getLocationFromPreferences = sharedPreferences.getString(savedLocationsPrefsTag, null);
+        Log.i(TAG, "onCreate: getLocationFromPreferences " + getLocationFromPreferences);
+        SavedLocations getSavedLocation = gson.fromJson(getLocationFromPreferences, SavedLocations.class);
+
+        String city = getSavedLocation.getLocations().get(0).getCity();
+        Log.i(TAG, "onCreate: city " + city);
+        */
     }
-   /*
+
+    /*
      *
      * Hide Keyboard when invoked
      */
-    private void hideKeyBoard() {
+    private void hideKeyBoard()
+    {
         InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
-            inputMethodManager.hideSoftInputFromWindow(mInputCity.getWindowToken(), 0);
+            //inputMethodManager.hideSoftInputFromWindow(mInputLocation.getWindowToken(), 0);
         }
     }
 
+    private void initTextViewFonts()
+    {
+        weatherIcon = Typeface.createFromAsset(this.getAssets(),"meteocons.ttf");
+        robotoLight = Typeface.createFromAsset(this.getAssets(),"Roboto-Light.ttf" );
+        robotoThin  = Typeface.createFromAsset(this.getAssets(), "Roboto-Thin.ttf");
+    }
 
     /**
      Search for weather in CurrentWeather API* @param view searchType = "location" search with GPS, searchType = "input" search via entered city
      */
-    public void findWeather(String searchType)  {
+    public void findWeather(String searchType)
+    {
 
         NetworkUtilsOpenWeather networkUtilsOpenWeather = new NetworkUtilsOpenWeather();
         URL[] weatherURL = networkUtilsOpenWeather.getUrl(this, searchType);
@@ -298,7 +289,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //setup icons for tabs
-    private void setupTabIcons() {
+    private void setupTabIcons()
+    {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         //tabLayout.getTabAt(2).setIcon(tabIcons[2]);
