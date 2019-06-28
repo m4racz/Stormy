@@ -92,7 +92,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
         forecastMax = Double.valueOf(CalcUtils.getRoundedTemperature(forecastMax));
         forecastMin = Double.valueOf(CalcUtils.getRoundedTemperature(forecastMax));
 
-        holder.mForecastTemperature.setText(forecastMin + "° / " + forecastMax + "°");
+        holder.mForecastTemperature.setText(forecastMax + "°");
 
         //set weather icon
         int idCondition = list.getWeather().get(0).getId();

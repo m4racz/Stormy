@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+
     public LocationManager locationManager;
     public LocationListener locationListener;
     public Location location;
@@ -61,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.tabforecast,
             R.drawable.tabmap
     };
-
-    private TextView mForecastIcon;
-    private TextView mForecastDay;
-    private TextView mForecastMinTemperature;
-    private TextView mForecastMaxTemperature;
 
     public static Typeface weatherIcon;
     public static Typeface robotoLight;
